@@ -1,15 +1,17 @@
-version: '3.5'
+version: '2.0'
 services:
   sti-postgresql:
     extends:
       file: sti-postgresql.yml
       service: sti-postgresql
     container_name: sti-postgresql
+
   sti-rabbitmq:
     extends:
       file: rabbitmq.yml
       service: sti-rabbitmq
     container_name: sti-rabbitmq
+
   sti-elasticsearch:
     extends:
       file: elasticsearch.yml

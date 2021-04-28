@@ -1,4 +1,4 @@
-vesion: '3.5'
+version: '2'
 services:
   sti-rabbitmq:
     image: rabbitmq:3-management-alpine

@@ -1,8 +1,8 @@
-vesion: '3.5'
+version: '2'
 services:
   sti-postgresql:
     image: postgres:11.5
-    enviroment:
+    environment:
       - POSTGRES_USER=sti
       - POSTGRES_PASSWORD= sti
     ports:
