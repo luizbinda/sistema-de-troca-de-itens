@@ -4,6 +4,6 @@ services:
     image: postgres:11.5
     environment:
       - POSTGRES_USER=sti
-      - POSTGRES_PASSWORD= sti
+      - POSTGRES_PASSWORD=sti
     ports:
       - 5432:5432
