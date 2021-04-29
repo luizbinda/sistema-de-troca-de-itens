@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="202104282037-01" author="jortolani">
+        <createTable tableName="image">
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="photo" type="blob">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)">
+            </column>
+            <column name="id_item" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createSequence sequenceName="seq_item" startValue="1" incrementBy="1" />
+
+        <addForeignKeyConstraint
+                baseTableName="image"
+                baseColumnNames="id_item"
+                referencedTableName="item"
+                referencedColumnNames="id"
+                constraintName="fk_image_item"
+        />
+
+    </changeSet>
+</databaseChangeLog>
