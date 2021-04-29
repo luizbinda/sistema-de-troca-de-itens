@@ -5,9 +5,6 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <changeSet id="202104282139-01" author="luiz.pimenta">
         <createTable tableName="item_offer">
-            <column name="id" type="int">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
             <column name="id_offer" type="int">
                 <constraints nullable="false"/>
             </column>
@@ -32,7 +29,11 @@
                 constraintName="fk_offer_item"
         />
 
-        <createSequence sequenceName="seq_item_offer" startValue="1" incrementBy="1" />
+        <addPrimaryKey
+                columnNames="id_offer, id_item_offer"
+                constraintName="pk_item_offer"
+                tableName="item_offer"
+        />
 
     </changeSet>
 </databaseChangeLog>

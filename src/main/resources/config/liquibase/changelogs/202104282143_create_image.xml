@@ -18,7 +18,7 @@
             </column>
         </createTable>
 
-        <createSequence sequenceName="seq_item" startValue="1" incrementBy="1" />
+        <createSequence sequenceName="seq_image" startValue="1" incrementBy="1" />
 
         <addForeignKeyConstraint
                 baseTableName="image"
