@@ -12,10 +12,5 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-
-        <createSequence sequenceName="seq_category" startValue="1" incrementBy="1" />
-
-
-
     </changeSet>
 </databaseChangeLog>
