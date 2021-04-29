@@ -5,4 +5,11 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
+    <include file="config/liquibase/changelogs/202104281912_create_user.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelogs/202104282036_create_category.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelogs/202104282037_create_item.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelogs/202104282143_create_image.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelogs/202104282134_create_situation_offer.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelogs/202104282137_create_offer.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelogs/202104282139_create_item_offer.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

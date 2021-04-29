@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="202104282139-01" author="luiz.pimenta">
+        <createTable tableName="item_offer">
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="id_offer" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_item_offer" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="item_offer"
+                baseColumnNames="id_offer"
+                referencedTableName="offer"
+                referencedColumnNames="id"
+                constraintName="fk_offer_item_offer"
+        />
+
+        <addForeignKeyConstraint
+                baseTableName="item_offer"
+                baseColumnNames="id_item_offer"
+                referencedTableName="item"
+                referencedColumnNames="id"
+                constraintName="fk_offer_item"
+        />
+
+        <createSequence sequenceName="seq_item_offer" startValue="1" incrementBy="1" />
+
+    </changeSet>
+</databaseChangeLog>
