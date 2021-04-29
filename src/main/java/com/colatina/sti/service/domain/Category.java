@@ -19,10 +19,11 @@ import java.io.Serializable;
 public class Category implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_category")
-    @SequenceGenerator(name = "seq_category", allocationSize = 1, sequenceName = "seq_category")
     @Column(name = "id")
     private Long id;
+
+    @Column(name = "description")
+    private String description;
 
 
 }
