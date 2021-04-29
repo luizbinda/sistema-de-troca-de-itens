@@ -3,12 +3,7 @@ package com.colatina.sti.service.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Getter
@@ -18,6 +13,8 @@ import java.io.Serializable;
 public class Item implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_item")
+    @SequenceGenerator(name = "seq_item", allocationSize = 1, sequenceName = "seq_item")
     @Column(name = "id")
     private Long id;
 
@@ -33,11 +30,11 @@ public class Item implements Serializable {
     @Column(name = "situation")
     private String situation;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_category")
     private Category category;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user")
     private User user;
 

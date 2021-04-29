@@ -19,6 +19,17 @@ public class User implements Serializable {
     private Long id;
 
     @Column(name = "dt_nascimento")
-    private LocalDate dataNascimento;
+    private LocalDate birthDate;
 
+    @Column(name = "nome")
+    private String name;
+
+    @Column(name = "cpf")
+    private String cpf;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "token")
+    private String token;
 }
