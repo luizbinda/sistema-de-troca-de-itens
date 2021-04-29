@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Table(name = "tb_user")
+@Table(name = "user")
 public class User implements Serializable {
 
     @Id
@@ -17,8 +17,6 @@ public class User implements Serializable {
     @SequenceGenerator(name = "seq_user", allocationSize = 1, sequenceName = "seq_user")
     @Column(name = "id")
     private Long id;
-
-
 
     @Column(name = "dt_nascimento")
     private LocalDate dataNascimento;
