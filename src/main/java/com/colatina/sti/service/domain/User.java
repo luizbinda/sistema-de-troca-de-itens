@@ -41,10 +41,4 @@ public class User implements Serializable {
     @Column(name = "token")
     private String token;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                '}';
-    }
 }
