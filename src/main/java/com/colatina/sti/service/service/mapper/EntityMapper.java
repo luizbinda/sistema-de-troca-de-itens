@@ -1,21 +1,17 @@
 package com.colatina.sti.service.service.mapper;
 
-
-import org.mapstruct.Mapper;
-
 import java.util.List;
 
-@Mapper(componentModel = "spring")
-public interface EntityMapper<T, D> {
+public interface EntityMapper<Entity, DTO> {
 
-    T toEntity(D dto);
+    Entity toEntity(DTO dto);
 
-    D toDTO(T entity);
+    DTO toDTO(Entity entity);
 
-    Iterable<D> iterableToDTO(Iterable<T> entities);
+    Iterable<DTO> iterableToDTO(Iterable<Entity> entities);
 
-    List<D> listDTO(List<T> entities);
+    List<DTO> listToDTO(List<Entity> entities);
 
-    List<T> listEntitys(List<D> dtos);
+    List<Entity> listToEntitys(List<DTO> dtos);
 
 }
