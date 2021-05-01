@@ -1,12 +1,15 @@
 package com.colatina.sti.service.service;
 
+import com.colatina.sti.service.domain.Category;
 import com.colatina.sti.service.domain.Item;
 import com.colatina.sti.service.domain.User;
+import com.colatina.sti.service.repository.CategoryRepository;
 import com.colatina.sti.service.repository.ItemRepository;
 import com.colatina.sti.service.repository.UserRepository;
 import com.colatina.sti.service.service.dto.item.ItemDTO;
 import com.colatina.sti.service.service.exception.RegraNegocioException;
 import com.colatina.sti.service.service.mapper.ItemMapper;
+import com.colatina.sti.service.service.mapper.UserListMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +23,9 @@ import java.util.List;
 public class ItemService {
 
   private final ItemRepository itemRepository;
-  private final UserRepository userRepository;
   private final ItemMapper itemMapper;
+  private final UserRepository userRepository;
+  private final CategoryRepository categoryRepository;
 
   public List<ItemDTO> index() {
     List<Item> list = itemRepository.findAll();
@@ -29,7 +33,8 @@ public class ItemService {
   }
 
   public ItemDTO show(Long id) {
-    Item item = itemRepository.findById(id).orElseThrow(() -> new RegraNegocioException("Nenhum item encontrado!"));
+    Item item = itemRepository.findById(id)
+            .orElseThrow(() -> new RegraNegocioException("Nenhum item encontrado!"));
     return itemMapper.toDTO(item);
   }
 
