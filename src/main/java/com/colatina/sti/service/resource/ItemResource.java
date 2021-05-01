@@ -1,9 +1,9 @@
 package com.colatina.sti.service.resource;
 
 import com.colatina.sti.service.service.ItemService;
-import com.colatina.sti.service.service.dto.ItemDto;
-import com.colatina.sti.service.service.dto.ItemListDto;
+import com.colatina.sti.service.service.dto.ItemDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,27 +22,27 @@ public class ItemResource {
   private final ItemService itemService;
 
   @GetMapping
-  public ResponseEntity<List<ItemListDto>> index() {
-    return null;
+  public ResponseEntity<List<ItemDTO>> index() {
+    return  new ResponseEntity<>(itemService.index(), HttpStatus.OK);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<ItemDto> show(@PathVariable String id) {
+  public ResponseEntity<ItemDTO> show(@PathVariable String id) {
     return null;
   }
 
   @PostMapping
-  public ResponseEntity<ItemDto> store(ItemDto item) {
+  public ResponseEntity<ItemDTO> store(ItemDTO item) {
     return null;
   }
 
   @PutMapping
-  public ResponseEntity<ItemDto> update(ItemDto item) {
+  public ResponseEntity<ItemDTO> update(ItemDTO item) {
     return null;
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<ItemDto> delete(@PathVariable Long id) {
+  public ResponseEntity<ItemDTO> delete(@PathVariable Long id) {
     return null;
   }
 

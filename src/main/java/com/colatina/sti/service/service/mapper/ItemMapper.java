@@ -1,7 +1,9 @@
 package com.colatina.sti.service.service.mapper;
 
 import com.colatina.sti.service.domain.Item;
-import com.colatina.sti.service.service.dto.ItemDto;
+import com.colatina.sti.service.service.dto.ItemDTO;
+import org.mapstruct.Mapper;
 
-public interface ItemMapper extends EntityMapper<Item, ItemDto>{
+@Mapper(componentModel = "spring")
+public interface ItemMapper extends EntityMapper<Item, ItemDTO> {
 }
