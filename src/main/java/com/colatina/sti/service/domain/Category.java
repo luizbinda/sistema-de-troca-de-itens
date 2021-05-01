@@ -17,7 +17,7 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "category")
+@Table(name = "category", schema = "public")
 public class Category implements Serializable {
 
     @Id

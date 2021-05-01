@@ -49,6 +49,4 @@ public class Item implements Serializable {
     @JoinColumn(name = "id_user")
     private User user;
 
-
-
 }

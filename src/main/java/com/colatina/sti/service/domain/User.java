@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "user", schema = "public")
 public class User implements Serializable {
 
     @Id
@@ -40,4 +40,11 @@ public class User implements Serializable {
 
     @Column(name = "token")
     private String token;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                '}';
+    }
 }

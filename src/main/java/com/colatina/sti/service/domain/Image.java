@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name = "image")
+@Table(name = "image", schema = "public")
 public class Image implements Serializable {
 
     @Id
