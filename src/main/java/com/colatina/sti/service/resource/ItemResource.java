@@ -35,7 +35,7 @@ public class ItemResource {
 
   @PostMapping
   public ResponseEntity<ItemDTO> store(@RequestBody ItemDTO itemDto) {
-    return  new ResponseEntity<>(itemService.store(itemDto), HttpStatus.OK);
+    return  new ResponseEntity<>(itemService.store(itemDto), HttpStatus.CREATED);
   }
 
   @PutMapping
