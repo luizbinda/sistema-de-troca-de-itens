@@ -1,4 +1,4 @@
-package com.colatina.sti.service.service.dto.category;
+package com.colatina.sti.service.service.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CategoryDTO implements Serializable {
+public class SelectDTO implements Serializable {
   private Long id;
 
   private String description;
