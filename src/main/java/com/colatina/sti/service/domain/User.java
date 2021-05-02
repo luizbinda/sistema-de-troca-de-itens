@@ -1,15 +1,23 @@
 package com.colatina.sti.service.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "user", schema = "public")
 public class User implements Serializable {
 
     @Id
@@ -32,4 +40,5 @@ public class User implements Serializable {
 
     @Column(name = "token")
     private String token;
+
 }
