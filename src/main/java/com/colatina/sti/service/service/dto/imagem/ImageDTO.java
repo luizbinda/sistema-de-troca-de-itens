@@ -15,9 +15,24 @@ public class ImageDTO implements Serializable {
 
   private Long id;
 
-  private Item Item;
+  private Item item;
 
   private byte[] photo;
 
   private String description;
+
+  public ImageDTO(byte[] photo, Long itemId, String description) {
+    this.photo = photo;
+    this.description = description;
+    this.item = new Item();
+    this.item.setId(itemId);
+  }
+
+  public ImageDTO(byte[] photo, Long itemId, String description, Long id) {
+    this.id = id;
+    this.photo = photo;
+    this.description = description;
+    this.item = new Item();
+    this.item.setId(itemId);
+  }
 }
