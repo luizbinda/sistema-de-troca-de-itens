@@ -28,15 +28,13 @@ public class UserResource {
     }
 
     @PostMapping
-    public ResponseEntity<UserListDTO> store(@RequestParam MultipartFile photo, Long itemId, String description) throws IOException {
-        UserListDTO UserListDTO = new UserListDTO();
-        return  new ResponseEntity<>(userService.store(UserListDTO), HttpStatus.CREATED);
+    public ResponseEntity<UserListDTO> store(@RequestParam UserListDTO userListDTO) throws IOException {
+        return  new ResponseEntity<>(userService.store(userListDTO), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<UserListDTO> update(@RequestParam MultipartFile photo, Long itemId, String description, Long id ) throws IOException {
-        UserListDTO UserListDTO = new UserListDTO();
-        return  new ResponseEntity<>(userService.update(UserListDTO), HttpStatus.OK);
+    public ResponseEntity<UserListDTO> update(@RequestParam UserListDTO userListDTO) throws IOException {
+        return  new ResponseEntity<>(userService.update(userListDTO), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

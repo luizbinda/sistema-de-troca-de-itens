@@ -7,8 +7,6 @@ import com.colatina.sti.service.service.exception.RegraNegocioException;
 import com.colatina.sti.service.service.mapper.UserListMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -17,33 +15,33 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final UserRepository UserRepository;
+    private final UserRepository userRepository;
     private final UserListMapper userListMapper;
 
     public List<UserListDTO> index() {
-        List<User> list = UserRepository.findAll();
+        List<User> list = userRepository.findAll();
         return userListMapper.listToDTO(list);
     }
 
     public UserListDTO show(Long id) {
-        User User = UserRepository.findById(id)
-                .orElseThrow(() -> new RegraNegocioException("Nenhum Usuário encontrado!"));
+        User User = userRepository.findById(id)
+                .orElseThrow(() -> new RegraNegocioException("Nenhuma Oferta encontrado!"));
         return userListMapper.toDTO(User);
     }
 
     public UserListDTO store(UserListDTO UserListDTO) {
         User User = userListMapper.toEntity(UserListDTO);
-        User = UserRepository.save(User);
+        User = userRepository.save(User);
         return userListMapper.toDTO(User);
     }
 
     public UserListDTO update(UserListDTO UserListDTO) {
         User User = userListMapper.toEntity(UserListDTO);
-        User = UserRepository.save(User);
+        User = userRepository.save(User);
         return userListMapper.toDTO(User);
     }
 
     public void delete(Long id) {
-        UserRepository.deleteById(id);
+        userRepository.deleteById(id);
     }
 }
