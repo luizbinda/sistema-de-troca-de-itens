@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/offer")
@@ -23,8 +24,8 @@ public class OfferResources {
     }
 
     @PostMapping
-    public ResponseEntity<OfferDTO> store(@RequestParam OfferDTO offerDTO) throws IOException {
-        return  new ResponseEntity<>(offerService.store(offerDTO), HttpStatus.CREATED);
+    public ResponseEntity<OfferDTO> store(@RequestParam OfferDTO offerDTO, @RequestParam List<Long> idsItensOfertados) throws IOException {
+        return  new ResponseEntity<>(offerService.store(offerDTO, idsItensOfertados), HttpStatus.CREATED);
     }
 
     @PutMapping

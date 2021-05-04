@@ -1,5 +1,6 @@
 package com.colatina.sti.service.service;
 
+import com.colatina.sti.service.domain.ItemOffer;
 import com.colatina.sti.service.domain.Offer;
 import com.colatina.sti.service.repository.OfferRepository;
 import com.colatina.sti.service.service.dto.offer.OfferDTO;
@@ -8,6 +9,7 @@ import com.colatina.sti.service.service.mapper.OfferMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,9 +31,19 @@ public class OfferService {
         return offerMapper.toDTO(offer);
     }
 
-    public OfferDTO store(OfferDTO offerDTO) {
+    public OfferDTO store(OfferDTO offerDTO, List<Long> idsItensOfertados) {
         Offer offer = offerMapper.toEntity(offerDTO);
         offer = offerRepository.save(offer);
+        List<ItemOffer> itensOfertados = new ArrayList<>();
+        final Offer finalOffer = offer;
+        idsItensOfertados.forEach(id -> {
+            ItemOffer item = new ItemOffer();
+            item.setIdOffer(finalOffer.getId());
+            item.setIdItemOffer(id);
+            itensOfertados.add(item);
+        });
+
+
         return offerMapper.toDTO(offer);
     }
 

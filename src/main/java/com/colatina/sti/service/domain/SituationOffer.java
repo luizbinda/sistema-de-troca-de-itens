@@ -2,7 +2,6 @@ package com.colatina.sti.service.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
