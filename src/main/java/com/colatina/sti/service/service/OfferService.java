@@ -2,7 +2,9 @@ package com.colatina.sti.service.service;
 
 import com.colatina.sti.service.domain.Offer;
 import com.colatina.sti.service.repository.OfferRepository;
+import com.colatina.sti.service.service.dto.offer.OfferDTO;
 import com.colatina.sti.service.service.exception.RegraNegocioException;
+import com.colatina.sti.service.service.mapper.OfferMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -14,26 +16,29 @@ import java.util.List;
 public class OfferService {
 
     private final OfferRepository offerRepository;
+    private final OfferMapper offerMapper;
 
-    public List<Offer> index() {
+    public List<OfferDTO> index() {
         List<Offer> list = offerRepository.findAll();
-        return list;
+        return offerMapper.listToDTO(list);
     }
 
-    public Offer show(Long id) {
+    public OfferDTO show(Long id) {
         Offer offer = offerRepository.findById(id)
-                .orElseThrow(() -> new RegraNegocioException("Nenhum Usuário encontrado!"));
-        return offer;
+                .orElseThrow(() -> new RegraNegocioException("Nenhuma oferta encontrada!"));
+        return offerMapper.toDTO(offer);
     }
 
-    public Offer store(Offer offer) {
+    public OfferDTO store(OfferDTO offerDTO) {
+        Offer offer = offerMapper.toEntity(offerDTO);
         offer = offerRepository.save(offer);
-        return offer;
+        return offerMapper.toDTO(offer);
     }
 
-    public Offer update(Offer offer) {
+    public OfferDTO update(OfferDTO offerDTO) {
+        Offer offer = offerMapper.toEntity(offerDTO);
         offer = offerRepository.save(offer);
-        return offer;
+        return offerMapper.toDTO(offer);
     }
 
     public void delete(Long id) {

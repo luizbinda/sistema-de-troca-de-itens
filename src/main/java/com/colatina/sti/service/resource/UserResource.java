@@ -1,19 +1,15 @@
 package com.colatina.sti.service.resource;
 
 import com.colatina.sti.service.service.UserService;
+import com.colatina.sti.service.service.dto.user.UserDTO;
 import com.colatina.sti.service.service.dto.user.UserListDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
@@ -21,19 +17,24 @@ import java.io.IOException;
 public class UserResource {
     private final UserService userService;
 
+    @GetMapping
+    public ResponseEntity<List<UserListDTO>> index() {
+        return  new ResponseEntity<>(userService.index(), HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<UserListDTO> show(@PathVariable Long id) {
+    public ResponseEntity<UserDTO> show(@PathVariable Long id) {
         return  new ResponseEntity<>(userService.show(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<UserListDTO> store(@RequestParam UserListDTO userListDTO) throws IOException {
-        return  new ResponseEntity<>(userService.store(userListDTO), HttpStatus.CREATED);
+    public ResponseEntity<UserDTO> store(@RequestBody UserDTO userDTO) throws IOException {
+        return  new ResponseEntity<>(userService.store(userDTO), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<UserListDTO> update(@RequestParam UserListDTO userListDTO) throws IOException {
-        return  new ResponseEntity<>(userService.update(userListDTO), HttpStatus.OK);
+    public ResponseEntity<UserDTO> update(@RequestBody UserDTO userDTO) throws IOException {
+        return  new ResponseEntity<>(userService.update(userDTO), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

@@ -3,6 +3,7 @@ package com.colatina.sti.service.resource;
 
 import com.colatina.sti.service.domain.Offer;
 import com.colatina.sti.service.service.OfferService;
+import com.colatina.sti.service.service.dto.offer.OfferDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,18 +18,18 @@ public class OfferResources {
     private final OfferService offerService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Offer> show(@PathVariable Long id) {
+    public ResponseEntity<OfferDTO> show(@PathVariable Long id) {
         return  new ResponseEntity<>(offerService.show(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Offer> store(@RequestParam Offer offer) throws IOException {
-        return  new ResponseEntity<>(offerService.store(offer), HttpStatus.CREATED);
+    public ResponseEntity<OfferDTO> store(@RequestParam OfferDTO offerDTO) throws IOException {
+        return  new ResponseEntity<>(offerService.store(offerDTO), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<Offer> update(@RequestParam Offer offer) throws IOException {
-        return  new ResponseEntity<>(offerService.update(offer), HttpStatus.OK);
+    public ResponseEntity<OfferDTO> update(@RequestParam OfferDTO offerDTO) throws IOException {
+        return  new ResponseEntity<>(offerService.update(offerDTO), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
