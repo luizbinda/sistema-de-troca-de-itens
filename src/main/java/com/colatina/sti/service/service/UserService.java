@@ -43,7 +43,7 @@ public class UserService {
 
     public UserDTO update(UserDTO userDTO) {
         User user = userMapper.toEntity(userDTO);
-        user.setToken(userRepository.findById(userDTO.getId()).get().getToken());
+        user.setToken(userRepository.findById(userDTO.getId()).orElseThrow(()-> new RegraNegocioException("Nenhum Usuário encontrado!")).getToken());
         user = userRepository.save(user);
         return userMapper.toDTO(user);
     }
