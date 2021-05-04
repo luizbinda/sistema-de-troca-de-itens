@@ -31,20 +31,8 @@ public class OfferService {
         return offerMapper.toDTO(offer);
     }
 
-    public OfferDTO store(OfferDTO offerDTO, List<Long> idsItensOfertados) {
-        Offer offer = offerMapper.toEntity(offerDTO);
-        offer = offerRepository.save(offer);
-        List<ItemOffer> itensOfertados = new ArrayList<>();
-        final Offer finalOffer = offer;
-        idsItensOfertados.forEach(id -> {
-            ItemOffer item = new ItemOffer();
-            item.setIdOffer(finalOffer.getId());
-            item.setIdItemOffer(id);
-            itensOfertados.add(item);
-        });
-
-
-        return offerMapper.toDTO(offer);
+    public OfferDTO store(OfferDTO offerDTO) {
+        return offerDTO;
     }
 
     public OfferDTO update(OfferDTO offerDTO) {

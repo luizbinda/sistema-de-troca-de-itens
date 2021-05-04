@@ -24,12 +24,12 @@ public class OfferResources {
     }
 
     @PostMapping
-    public ResponseEntity<OfferDTO> store(@RequestParam OfferDTO offerDTO, @RequestParam List<Long> idsItensOfertados) throws IOException {
-        return  new ResponseEntity<>(offerService.store(offerDTO, idsItensOfertados), HttpStatus.CREATED);
+    public ResponseEntity<OfferDTO> store(@RequestBody OfferDTO offerDTO) throws IOException {
+        return  new ResponseEntity<>(offerService.store(offerDTO), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<OfferDTO> update(@RequestParam OfferDTO offerDTO) throws IOException {
+    public ResponseEntity<OfferDTO> update(@RequestBody OfferDTO offerDTO) throws IOException {
         return  new ResponseEntity<>(offerService.update(offerDTO), HttpStatus.OK);
     }
 
