@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserListDTO implements Serializable {
+public class UserDTO implements Serializable {
 
   private Long id;
 
@@ -18,5 +18,7 @@ public class UserListDTO implements Serializable {
   private String name;
 
   private String email;
+
+  private String cpf;
 
 }

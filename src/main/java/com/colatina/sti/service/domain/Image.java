@@ -19,7 +19,7 @@ public class Image implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_item")
-    private Item Item;
+    private Item item;
 
     @Lob
     @Column(name = "photo")

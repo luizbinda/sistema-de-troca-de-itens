@@ -3,7 +3,6 @@ package com.colatina.sti.service.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -54,7 +53,5 @@ public class Item implements Serializable {
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_item")
     private List<Image> images;
-
-
 
 }
