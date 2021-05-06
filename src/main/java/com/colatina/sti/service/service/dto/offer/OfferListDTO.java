@@ -1,8 +1,5 @@
 package com.colatina.sti.service.service.dto.offer;
 
-import com.colatina.sti.service.domain.Item;
-import com.colatina.sti.service.domain.SituationOffer;
-import com.colatina.sti.service.domain.User;
 import com.colatina.sti.service.service.dto.SelectDTO;
 import com.colatina.sti.service.service.dto.item.ItemListDTO;
 import com.colatina.sti.service.service.dto.user.UserListDTO;
@@ -26,6 +23,6 @@ public class OfferListDTO implements Serializable {
 
   private SelectDTO situation;
 
-  private List<Item> itemsOffered;
+  private List<ItemListDTO> itemsOffered;
 
 }
