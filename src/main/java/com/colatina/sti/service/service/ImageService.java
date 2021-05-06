@@ -40,6 +40,10 @@ public class ImageService {
   }
 
   public void delete(Long id) {
-    imageRepository.deleteById(id);
+    try {
+      imageRepository.deleteById(id);
+    } catch (Exception e) {
+      throw  new RegraNegocioException("Nenhuma imagem encontrado!");
+    }
   }
 }

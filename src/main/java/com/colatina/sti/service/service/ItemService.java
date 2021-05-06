@@ -47,6 +47,10 @@ public class ItemService {
   }
 
   public void delete(Long id) {
-    itemRepository.deleteById(id);
+    try {
+      itemRepository.deleteById(id);
+    } catch (Exception e) {
+      throw  new RegraNegocioException("Nenhum item encontrado!");
+    }
   }
 }

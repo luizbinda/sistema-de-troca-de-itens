@@ -49,6 +49,10 @@ public class UserService {
     }
 
     public void delete(Long id) {
-        userRepository.deleteById(id);
+        try {
+            userRepository.deleteById(id);
+        } catch (Exception e) {
+            throw  new RegraNegocioException("Nenhum usuario encontrado!");
+        }
     }
 }

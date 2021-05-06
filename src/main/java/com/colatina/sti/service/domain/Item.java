@@ -39,9 +39,6 @@ public class Item implements Serializable {
     @Column(name = "available")
     private Boolean available;
 
-    @Column(name = "situation")
-    private String situation;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_category")
     private Category category;
