@@ -1,8 +1,5 @@
 package com.colatina.sti.service.service.dto.offer;
 
-import com.colatina.sti.service.service.dto.SelectDTO;
-import com.colatina.sti.service.service.dto.item.ItemListDTO;
-import com.colatina.sti.service.service.dto.user.UserListDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,12 +13,12 @@ public class OfferDTO implements Serializable {
 
   private Long id;
 
-  private ItemListDTO item;
+  private Long itemId;
 
-  private SelectDTO situation;
+  private Long userId;
 
-  private UserListDTO user;
+  private Long situationId;
 
-  private List<ItemListDTO> itens_ofertados;
+  private List<Long> itemsOffered;
 
 }
