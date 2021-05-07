@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
+import org.springframework.web.bind.annotation.*;
+import java.io.IOException;
 
 @RestController
-@RequestMapping("/api/offer")
+@RequestMapping("/api/offers")
 @RequiredArgsConstructor
 public class OfferResources {
     private final OfferService offerService;
