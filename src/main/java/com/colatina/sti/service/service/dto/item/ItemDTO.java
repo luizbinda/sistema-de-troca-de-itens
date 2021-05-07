@@ -1,7 +1,5 @@
 package com.colatina.sti.service.service.dto.item;
 
-import com.colatina.sti.service.service.dto.SelectDTO;
-import com.colatina.sti.service.service.dto.user.UserListDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,9 +18,7 @@ public class ItemDTO implements Serializable {
 
   private Boolean available;
 
-  private String situation;
+  private Long categoryId;
 
-  private SelectDTO category;
-
-  private UserListDTO user;
+  private Long userId;
 }

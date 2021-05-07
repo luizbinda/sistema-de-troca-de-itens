@@ -14,9 +14,6 @@
             <column name="description" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="situation" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
             <column name="available" type="boolean">
                 <constraints nullable="false"/>
             </column>
