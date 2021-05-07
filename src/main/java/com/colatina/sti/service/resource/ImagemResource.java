@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/api/image")
+@RequestMapping("/api/images")
 @RequiredArgsConstructor
 public class ImagemResource {
   private final ImageService imagemService;

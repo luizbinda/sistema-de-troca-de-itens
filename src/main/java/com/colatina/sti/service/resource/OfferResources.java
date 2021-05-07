@@ -1,19 +1,15 @@
 package com.colatina.sti.service.resource;
 
-
-import com.colatina.sti.service.domain.Offer;
 import com.colatina.sti.service.service.OfferService;
 import com.colatina.sti.service.service.dto.offer.OfferDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.IOException;
-import java.util.List;
 
 @RestController
-@RequestMapping("/api/offer")
+@RequestMapping("/api/offers")
 @RequiredArgsConstructor
 public class OfferResources {
     private final OfferService offerService;
