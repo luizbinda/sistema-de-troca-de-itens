@@ -5,12 +5,9 @@ import com.colatina.sti.service.service.UserService;
 import com.colatina.sti.service.service.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 
 @Component
-@Transactional
 public class UserBuilder extends ConstrutorEntidade<User>{
 
   @Autowired

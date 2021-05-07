@@ -1,18 +1,16 @@
 package com.colatina.sti.service.resource;
 
-
-import com.colatina.sti.service.ServiceApplication;
 import com.colatina.sti.service.builder.UserBuilder;
 import com.colatina.sti.service.domain.User;
 import com.colatina.sti.service.service.mapper.UserMapper;
 import com.colatina.sti.service.util.IntTestComum;
 import com.colatina.sti.service.util.TestUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -20,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ServiceApplication.class)
+@Transactional
 public class UserResourceIT extends IntTestComum {
 
   @Autowired
@@ -39,7 +37,6 @@ public class UserResourceIT extends IntTestComum {
             .contentType(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$",hasSize(7)));
-
   }
 
   @Test
