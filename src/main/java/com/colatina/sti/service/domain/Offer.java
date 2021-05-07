@@ -35,6 +35,6 @@ public class Offer implements Serializable {
                joinColumns = { @JoinColumn(name = "id_offer") },
                inverseJoinColumns = { @JoinColumn(name = "id_item_offer") }
     )
-    private List<Item> itens_ofertados;
+    private List<Item> itemsOffered;
 
 }
