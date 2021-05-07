@@ -27,12 +27,12 @@ public class UserResource {
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> store(@RequestBody UserDTO userDTO) throws IOException {
+    public ResponseEntity<UserDTO> store(@RequestBody UserDTO userDTO) {
         return  new ResponseEntity<>(userService.store(userDTO), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<UserDTO> update(@RequestBody UserDTO userDTO) throws IOException {
+    public ResponseEntity<UserDTO> update(@RequestBody UserDTO userDTO) {
         return  new ResponseEntity<>(userService.update(userDTO), HttpStatus.OK);
     }
 
