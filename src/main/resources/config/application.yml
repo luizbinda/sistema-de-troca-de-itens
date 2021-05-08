@@ -3,7 +3,6 @@ application:
     email:
         endereco-remetente: jhordan.orto@gmail.com
         nome-remetente: Jhordan
-
 spring:
     application:
         name: service
@@ -29,7 +28,7 @@ spring:
             hibernate.generate_statistics: false
     liquibase:
         change-log: classpath:/config/liquibase/master.xml
-        drop-first: true
+#        drop-first: true
     mail:
         host: smtp.gmail.com
         port: 587
@@ -45,3 +44,5 @@ spring:
                     quitwait: false
 server:
     port: 8080
+    error:
+        include-message: always

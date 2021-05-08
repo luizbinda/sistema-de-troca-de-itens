@@ -19,9 +19,9 @@ public class UserBuilder extends ConstrutorEntidade<User>{
   @Override
   public User construirEntidade() {
     User user = new User();
-    user.setBirthDate(LocalDate.now());
-    user.setCpf("12113131212");
-    user.setEmail("email");
+    user.setBirthDate(LocalDate.of(1980, 10,10));
+    user.setCpf("13534293690");
+    user.setEmail("email@gmail.com");
     user.setName("teste");
     return user;
   }
