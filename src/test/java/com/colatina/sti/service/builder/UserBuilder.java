@@ -20,7 +20,7 @@ public class UserBuilder extends ConstrutorEntidade<User>{
   public User construirEntidade() {
     User user = new User();
     user.setBirthDate(LocalDate.of(1980, 10,10));
-    user.setCpf("13534293690");
+    user.setCpf("66326270057");
     user.setEmail("email@gmail.com");
     user.setName("teste");
     return user;

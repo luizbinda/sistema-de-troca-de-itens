@@ -16,10 +16,10 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class EmailService {
 
-//    private final JavaMailSender javaMailSender;
-//    private final ApplicationProperties applicationProperties;
-//
-//    public void sendEmail(EmailDTO emailDTO){
+    private final JavaMailSender javaMailSender;
+    private final ApplicationProperties applicationProperties;
+
+    public void sendEmail(EmailDTO emailDTO){
 //        try {
 //            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 //            MimeMessageHelper message = new MimeMessageHelper(mimeMessage, false, "UTF-8");
@@ -37,5 +37,5 @@ public class EmailService {
 //        }catch (Exception e) {
 //            e.printStackTrace();
 //        }
-//    }
+    }
 }

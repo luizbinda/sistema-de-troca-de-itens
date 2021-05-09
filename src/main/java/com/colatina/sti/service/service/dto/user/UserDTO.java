@@ -1,5 +1,6 @@
 package com.colatina.sti.service.service.dto.user;
 
+import com.colatina.sti.service.service.Utils.ConstantsUtils;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,22 +20,22 @@ public class UserDTO implements Serializable {
 
   private Long id;
 
-  @NotNull(message = "Data de nascimento é obrigatoria!")
-  @Past(message = "Data de nascimento deve ser uma data passada!")
+  @NotNull(message = ConstantsUtils.USER_BIRTH_DATE_NOT_NULL)
+  @Past(message = ConstantsUtils.USER_BIRTH_DATE_PAST)
   private LocalDate birthDate;
 
-  @NotBlank(message = "Nome não pode ser vazio!")
-  @NotNull(message = "Nome é obrigatorio!")
+  @NotBlank(message = ConstantsUtils.USER_NAME_NOT_EMPTY)
+  @NotNull(message = ConstantsUtils.USER_NAME_NOT_NULL)
   private String name;
 
-  @Email(message = "Email em formato inválido!")
-  @NotBlank(message = "Email não pode ser vazia!")
-  @NotNull(message = "Email é obrigatorio!")
+  @Email(message = ConstantsUtils.USER_EMAIL_FORMART)
+  @NotBlank(message =ConstantsUtils.USER_EMAIL_NOT_EMPTY)
+  @NotNull(message = ConstantsUtils.USER_EMAIL_NOT_NULL)
   private String email;
 
-  @NotBlank(message = "Cpf não pode ser vazia!")
-  @NotNull(message = "Cpf é obrigatorio!")
-  @CPF(message = "Cpf em formato inválido!")
+  @NotBlank(message = ConstantsUtils.USER_CPF_NOT_EMPTY)
+  @NotNull(message = ConstantsUtils.USER_CPF_NOT_NULL)
+  @CPF(message = ConstantsUtils.USER_CPF_FORMART)
   private String cpf;
 
 }
