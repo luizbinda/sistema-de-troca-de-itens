@@ -20,22 +20,22 @@ public class EmailService {
     private final ApplicationProperties applicationProperties;
 
     public void sendEmail(EmailDTO emailDTO){
-//        try {
-//            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-//            MimeMessageHelper message = new MimeMessageHelper(mimeMessage, false, "UTF-8");
-//            message.setTo(emailDTO.getDestinatario());
-//            message.setFrom(applicationProperties.getEnderecoRemetente(),
-//                    applicationProperties.getNomeRemetente());
-//            message.setSubject(emailDTO.getAssunto());
-//
-//            for(String s : emailDTO.getCopias()){
-//                message.addCc(s);
-//            }
-//
-//            message.setText(emailDTO.getCorpo(), true);
-//            javaMailSender.send(mimeMessage);
-//        }catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+            MimeMessageHelper message = new MimeMessageHelper(mimeMessage, false, "UTF-8");
+            message.setTo(emailDTO.getDestinatario());
+            message.setFrom(applicationProperties.getEnderecoRemetente(),
+                    applicationProperties.getNomeRemetente());
+            message.setSubject(emailDTO.getAssunto());
+
+            for(String s : emailDTO.getCopias()){
+                message.addCc(s);
+            }
+
+            message.setText(emailDTO.getCorpo(), true);
+            javaMailSender.send(mimeMessage);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
