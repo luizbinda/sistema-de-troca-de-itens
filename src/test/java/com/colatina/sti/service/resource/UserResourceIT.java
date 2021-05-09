@@ -59,6 +59,17 @@ public class UserResourceIT extends IntTestComum {
   }
 
   @Test
+  public void searchForANonExistingUser() throws Exception {
+    getMockMvc().perform(get(URL + "/1")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isBadRequest())
+            .andExpect(mvcResult -> Assertions.assertTrue(
+                    Objects.requireNonNull(mvcResult.getResolvedException()).getMessage()
+                            .contains(ConstantsUtils.USER_NOT_FOUND)
+            ));
+  }
+
+  @Test
   public void tryStoreOneUserWithBirthDateNull() throws Exception{
     User user = builder.construirEntidade();
     user.setBirthDate(null);
@@ -232,6 +243,20 @@ public class UserResourceIT extends IntTestComum {
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(userMapper.toDTO(user))))
             .andExpect(status().isOk());
+  }
+
+  @Test
+  public void updateANonExistingUser() throws Exception {
+    User user = builder.construirEntidade();
+    user.setId(1L);
+    getMockMvc().perform(put(URL)
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(userMapper.toDTO(user))))
+            .andExpect(status().isBadRequest())
+            .andExpect(mvcResult -> Assertions.assertTrue(
+                    Objects.requireNonNull(mvcResult.getResolvedException()).getMessage()
+                            .contains(ConstantsUtils.USER_NOT_FOUND)
+            ));
   }
 
 }
