@@ -27,13 +27,7 @@ public class ImageService {
     return imageListMapper.toDTO(image);
   }
 
-  public ImageListDTO store(ImageDTO imageDTO) {
-    Image image = imageMapper.toEntity(imageDTO);
-    image = imageRepository.save(image);
-    return imageListMapper.toDTO(image);
-  }
-
-  public ImageListDTO update(ImageDTO imageDTO) {
+  public ImageListDTO save(ImageDTO imageDTO) {
     Image image = imageMapper.toEntity(imageDTO);
     image = imageRepository.save(image);
     return imageListMapper.toDTO(image);
