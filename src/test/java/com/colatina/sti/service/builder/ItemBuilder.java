@@ -34,6 +34,6 @@ public class ItemBuilder extends ConstrutorEntidade<Item>{
 
   @Override
   public Item persistir(Item entidade) {
-    return itemMapper.toEntity(itemService.store(itemMapper.toDTO(entidade)));
+    return itemMapper.toEntity(itemService.save(itemMapper.toDTO(entidade)));
   }
 }
