@@ -48,6 +48,7 @@ public class OfferService {
         offersToDecline.forEach(offerToDecline ->  offerToDecline.setSituation(new SituationOffer(ConstantsUtils.SITUATION_REFUSED)));
         offerRepository.saveAll(offersToDecline);
         offer.setSituation(new SituationOffer(ConstantsUtils.SITUATION_ACCEPTED));
+        offer = offerRepository.save(offer);
         return offerListMapper.toDTO(offer);
     }
 

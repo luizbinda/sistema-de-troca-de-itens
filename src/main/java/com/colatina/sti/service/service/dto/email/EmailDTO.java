@@ -1,6 +1,5 @@
 package com.colatina.sti.service.service.dto.email;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
