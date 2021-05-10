@@ -51,7 +51,7 @@ public class UserService {
         user.setToken(Long.toHexString(rand.nextLong()));
         user = userRepository.save(user);
 
-        emailService.sendEmail(getEmail(user));
+//        emailService.sendEmail(getEmail(user));
 
         return userMapper.toDTO(user);
     }
