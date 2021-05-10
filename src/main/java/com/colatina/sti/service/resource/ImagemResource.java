@@ -33,13 +33,13 @@ public class ImagemResource {
   @PostMapping
   public ResponseEntity<ImageListDTO> store(@RequestParam MultipartFile photo, Long itemId, String description) throws IOException {
     ImageDTO imageDTO = new ImageDTO(photo.getBytes(), itemId, description);
-    return  new ResponseEntity<>(imagemService.store(imageDTO), HttpStatus.CREATED);
+    return  new ResponseEntity<>(imagemService.save(imageDTO), HttpStatus.CREATED);
   }
 
   @PutMapping
   public ResponseEntity<ImageListDTO> update(@RequestParam MultipartFile photo, Long itemId, String description, Long id ) throws IOException {
-    ImageDTO imageDTO = new ImageDTO(photo.getBytes(), itemId, description, id);
-    return  new ResponseEntity<>(imagemService.update(imageDTO), HttpStatus.OK);
+    ImageDTO imageDTO = new ImageDTO(id, itemId, photo.getBytes(), description);
+    return  new ResponseEntity<>(imagemService.save(imageDTO), HttpStatus.OK);
   }
 
   @DeleteMapping("/{id}")

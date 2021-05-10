@@ -72,7 +72,7 @@ public class UserService {
 
         email.setAssunto("Cadastro STI");
         email.setCorpo("Cadastro realizado com sucesso no STI");
-        email.setDestinatario("jhordan.eumesmo@gmail.com");
+        email.setDestinatario(user.getEmail());
 
         return email;
     }
