@@ -68,8 +68,9 @@ public class OfferService {
         Offer offer = offerMapper.toEntity(offerDTO);
 
         if (!itemService.show(offer.getItem().getId()).getAvailable()) {
-            throw  new RegraNegocioException("Item não disponivel!");
+            throw  new RegraNegocioException(ConstantsUtils.ITEM_NOT_AVAILABLE);
         }
+
         offer = offerRepository.save(offer);
         return offerMapper.toDTO(offer);
     }

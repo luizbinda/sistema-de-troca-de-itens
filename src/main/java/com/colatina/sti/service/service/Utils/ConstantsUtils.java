@@ -33,6 +33,7 @@ public class ConstantsUtils {
   public static final String OFFER_ITEMS_OFFERED_NOT_NULL = "Itens ofertados são obrigatorios!";
   public static final String OFFER_ITEMS_OFFERED_NOT_EMPTY = "É necessário ao menos 1 item ofertado para criar uma oferta!";
   public static final String OFFER_NOT_FOUND = "Nenhuma Oferta encontrada!";
+  public static final String ITEM_NOT_AVAILABLE = "Item não disponivel!";
 
 
 
