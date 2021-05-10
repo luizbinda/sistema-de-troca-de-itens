@@ -36,24 +36,25 @@ public class OfferService {
 
     public OfferListDTO show(Long id) {
         Offer offer = offerRepository.findById(id)
-                .orElseThrow(() -> new RegraNegocioException("Nenhuma oferta encontrada!"));
+                .orElseThrow(() -> new RegraNegocioException(ConstantsUtils.OFFER_NOT_FOUND));
         return offerListMapper.toDTO(offer);
     }
 
     public OfferListDTO changeSituationAccepted(Long id) {
-        Offer offer = offerRepository.findById(id).orElseThrow(() -> new RegraNegocioException("Nenhuma oferta encontrada!"));
+        Offer offer = offerRepository.findById(id).orElseThrow(() -> new RegraNegocioException(ConstantsUtils.OFFER_NOT_FOUND));
         List<Long> itensIds = offer.getItemsOffered().stream().map(Item::getId).collect(Collectors.toList());
         List<Offer> offersToDecline = new ArrayList<>(offerRepository.findBySituationIdAndItemIdIn(ConstantsUtils.SITUATION_PENDING, itensIds));
         offersToDecline.addAll(offerRepository.findAllByIdNotAndSituationIdAndItemId(offer.getId(), ConstantsUtils.SITUATION_PENDING, offer.getItem().getId()));
         offersToDecline.forEach(offerToDecline ->  offerToDecline.setSituation(new SituationOffer(ConstantsUtils.SITUATION_REFUSED)));
         offerRepository.saveAll(offersToDecline);
         offer.setSituation(new SituationOffer(ConstantsUtils.SITUATION_ACCEPTED));
+        offer = offerRepository.save(offer);
         return offerListMapper.toDTO(offer);
     }
 
     public OfferListDTO changeSituationRefused(Long id) {
         Offer offer = offerRepository.findById(id)
-                .orElseThrow(() -> new RegraNegocioException("Nenhuma oferta encontrada!"));
+                .orElseThrow(() -> new RegraNegocioException(ConstantsUtils.OFFER_NOT_FOUND));
         SituationOffer refused = new SituationOffer(ConstantsUtils.SITUATION_REFUSED);
         offer.setSituation(refused);
         offer = offerRepository.save(offer);
@@ -61,21 +62,15 @@ public class OfferService {
     }
 
 
-    public OfferDTO store(OfferDTO offerDTO) {
+    public OfferDTO save(OfferDTO offerDTO) {
 
         offerDTO.setSituationId(ConstantsUtils.SITUATION_PENDING);
         Offer offer = offerMapper.toEntity(offerDTO);
 
         if (!itemService.show(offer.getItem().getId()).getAvailable()) {
-            throw  new RegraNegocioException("Item não disponivel!");
+            throw  new RegraNegocioException(ConstantsUtils.ITEM_NOT_AVAILABLE);
         }
-        offer = offerRepository.save(offer);
-        return offerMapper.toDTO(offer);
-    }
 
-    public OfferDTO update(OfferDTO offerDTO) {
-        offerDTO.setSituationId(ConstantsUtils.SITUATION_PENDING);
-        Offer offer = offerMapper.toEntity(offerDTO);
         offer = offerRepository.save(offer);
         return offerMapper.toDTO(offer);
     }

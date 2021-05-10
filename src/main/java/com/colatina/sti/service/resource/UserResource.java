@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
@@ -27,12 +29,12 @@ public class UserResource {
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> store(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserDTO> store(@RequestBody @Valid UserDTO userDTO) {
         return  new ResponseEntity<>(userService.store(userDTO), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<UserDTO> update(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserDTO> update(@RequestBody @Valid UserDTO userDTO) {
         return  new ResponseEntity<>(userService.update(userDTO), HttpStatus.OK);
     }
 

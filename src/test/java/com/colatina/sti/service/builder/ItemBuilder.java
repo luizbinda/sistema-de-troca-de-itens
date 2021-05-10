@@ -1,18 +1,12 @@
 package com.colatina.sti.service.builder;
 
-import com.colatina.sti.service.domain.Category;
 import com.colatina.sti.service.domain.Item;
 import com.colatina.sti.service.domain.User;
-import com.colatina.sti.service.repository.CategoryRepository;
 import com.colatina.sti.service.service.ItemService;
-import com.colatina.sti.service.service.UserService;
+import com.colatina.sti.service.service.dto.item.ItemDTO;
 import com.colatina.sti.service.service.mapper.ItemMapper;
-import com.colatina.sti.service.service.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
-import java.util.List;
 
 @Component
 public class ItemBuilder extends ConstrutorEntidade<Item>{
@@ -26,22 +20,16 @@ public class ItemBuilder extends ConstrutorEntidade<Item>{
   @Autowired
   private UserBuilder userBuilder;
 
-  @Autowired
-  private CategoryRepository categoryRepository;
-
-
   @Override
   public Item construirEntidade() {
-    Item item = new Item();
-    item.setUser(userBuilder.construirEntidade());
-    item.setName("Nome teste");
-    item.setDescription("descrição");
-
-    List<Category> categoryList = categoryRepository.findAll();
-    if (categoryList != null && categoryList.size() > 0)
-    item.setCategory(categoryList.get(0));
-
-    return item;
+    ItemDTO item = new ItemDTO();
+    item.setName("item de teste");
+    item.setDescription("description item de teste");
+    item.setAvailable(true);
+    User user = userBuilder.construir();
+    item.setUserId(user.getId());
+    item.setCategoryId(1L);
+    return itemMapper.toEntity(item);
   }
 
   @Override
