@@ -7,12 +7,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 @RequiredArgsConstructor
 public class UserResource {
     private final UserService userService;
@@ -28,12 +27,12 @@ public class UserResource {
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> store(@RequestBody UserDTO userDTO) throws IOException {
+    public ResponseEntity<UserDTO> store(@RequestBody UserDTO userDTO) {
         return  new ResponseEntity<>(userService.store(userDTO), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<UserDTO> update(@RequestBody UserDTO userDTO) throws IOException {
+    public ResponseEntity<UserDTO> update(@RequestBody UserDTO userDTO) {
         return  new ResponseEntity<>(userService.update(userDTO), HttpStatus.OK);
     }
 

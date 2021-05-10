@@ -2,11 +2,13 @@ package com.colatina.sti.service.service;
 
 import com.colatina.sti.service.domain.User;
 import com.colatina.sti.service.repository.UserRepository;
+import com.colatina.sti.service.service.dto.email.EmailDTO;
 import com.colatina.sti.service.service.dto.user.UserDTO;
 import com.colatina.sti.service.service.dto.user.UserListDTO;
 import com.colatina.sti.service.service.exception.RegraNegocioException;
 import com.colatina.sti.service.service.mapper.UserListMapper;
 import com.colatina.sti.service.service.mapper.UserMapper;
+import liquibase.pro.packaged.E;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -22,6 +24,7 @@ public class UserService {
     private final UserListMapper userListMapper;
     private final UserMapper userMapper;
     private final Random rand = new Random();
+    private final EmailService emailService;
 
     public List<UserListDTO> index() {
         List<User> list = userRepository.findAll();
@@ -38,7 +41,21 @@ public class UserService {
         User user = userMapper.toEntity(userDTO);
         user.setToken(Long.toHexString(rand.nextLong()));
         user = userRepository.save(user);
+
+        emailService.sendEmail(getEmail(user));
+
         return userMapper.toDTO(user);
+    }
+
+    private EmailDTO getEmail(User user){
+
+        EmailDTO email = new EmailDTO();
+
+        email.setAssunto("Cadastro STI");
+        email.setCorpo("Cadastro realizado com sucesso no STI");
+        email.setDestinatario(user.getEmail());
+
+        return email;
     }
 
     public UserDTO update(UserDTO userDTO) {

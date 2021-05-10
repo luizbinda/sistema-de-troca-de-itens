@@ -1,5 +1,8 @@
 application:
     appName: sti
+    email:
+        endereco-remetente: jhordan.orto@gmail.com
+        nome-remetente: Jhordan
 
 spring:
     application:
@@ -27,5 +30,18 @@ spring:
     liquibase:
         change-log: classpath:/config/liquibase/master.xml
 #        drop-first: true
+    mail:
+        host: smtp.gmail.com
+        port: 587
+        username: jhordan.orto@gmail.com
+        password: Barro2424
+        properties:
+            mail:
+                smtp:
+                    auth: true
+                    starttls:
+                        enable: true
+                        required: true
+                    quitwait: false
 server:
     port: 8080
