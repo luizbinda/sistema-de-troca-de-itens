@@ -24,6 +24,13 @@ public interface OfferMapper extends EntityMapper<Offer, OfferDTO> {
     );
   }
 
+  @AfterMapping
+  default void setIdsItensOffers(Offer entity, @MappingTarget OfferDTO dto) {
+    dto.setItemsOffered(
+            entity.getItemsOffered().stream().map(Item::getId).collect(Collectors.toList())
+    );
+  }
+
   @Override
   @Mapping(source = "itemId", target = "item.id")
   @Mapping(source = "userId", target = "user.id")

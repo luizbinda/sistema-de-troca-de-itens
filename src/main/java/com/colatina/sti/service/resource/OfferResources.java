@@ -29,7 +29,7 @@ public class OfferResources {
         return  new ResponseEntity<>(offerService.show(id), HttpStatus.OK);
     }
 
-    @GetMapping("item/{id}")
+    @GetMapping("/item/{id}")
     public ResponseEntity<List<OfferListDTO>> index(@PathVariable Long id) {
         return  new ResponseEntity<>(offerService.index(id), HttpStatus.OK);
     }
@@ -46,12 +46,12 @@ public class OfferResources {
 
     @PostMapping
     public ResponseEntity<OfferDTO> store(@RequestBody OfferDTO offerDTO) {
-        return  new ResponseEntity<>(offerService.store(offerDTO), HttpStatus.CREATED);
+        return  new ResponseEntity<>(offerService.save(offerDTO), HttpStatus.CREATED);
     }
 
     @PutMapping
     public ResponseEntity<OfferDTO> update(@RequestBody OfferDTO offerDTO) {
-        return  new ResponseEntity<>(offerService.update(offerDTO), HttpStatus.OK);
+        return  new ResponseEntity<>(offerService.save(offerDTO), HttpStatus.OK);
     }
 
 }

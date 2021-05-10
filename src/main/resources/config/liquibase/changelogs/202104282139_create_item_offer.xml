@@ -6,13 +6,15 @@
     <changeSet id="202104282139-01" author="luiz.pimenta">
         <createTable tableName="item_offer">
             <column name="id_offer" type="int">
-                <constraints nullable="false"/>
+                <constraints
+                        nullable="false"
+                />
             </column>
             <column name="id_item_offer" type="int">
-                <constraints nullable="false"/>
+                <constraints
+                        nullable="false" />
             </column>
         </createTable>
-
         <addForeignKeyConstraint
                 baseTableName="item_offer"
                 baseColumnNames="id_offer"
@@ -26,7 +28,7 @@
                 baseColumnNames="id_item_offer"
                 referencedTableName="item"
                 referencedColumnNames="id"
-                constraintName="fk_offer_item"
+                constraintName="fk_offer_item_item"
         />
 
         <addPrimaryKey
@@ -34,6 +36,5 @@
                 constraintName="pk_item_offer"
                 tableName="item_offer"
         />
-
     </changeSet>
 </databaseChangeLog>
