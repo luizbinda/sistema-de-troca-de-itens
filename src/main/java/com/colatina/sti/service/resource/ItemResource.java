@@ -35,12 +35,12 @@ public class ItemResource {
 
   @PostMapping
   public ResponseEntity<ItemDTO> store(@RequestBody ItemDTO itemDto) {
-    return  new ResponseEntity<>(itemService.store(itemDto), HttpStatus.CREATED);
+    return  new ResponseEntity<>(itemService.save(itemDto), HttpStatus.CREATED);
   }
 
   @PutMapping
   public ResponseEntity<ItemDTO> update(@RequestBody ItemDTO itemDto) {
-    return  new ResponseEntity<>(itemService.update(itemDto), HttpStatus.OK);
+    return  new ResponseEntity<>(itemService.save(itemDto), HttpStatus.OK);
   }
 
   @DeleteMapping("/{id}")

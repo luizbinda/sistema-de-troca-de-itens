@@ -34,13 +34,7 @@ public class ItemService {
     return itemListMapper.toDTO(item);
   }
 
-  public ItemDTO store(ItemDTO itemDto) {
-    Item item = itemMapper.toEntity(itemDto);
-    item = itemRepository.save(item);
-    return itemMapper.toDTO(item);
-  }
-
-  public ItemDTO update(ItemDTO itemDto) {
+  public ItemDTO save(ItemDTO itemDto) {
     Item item = itemMapper.toEntity(itemDto);
     item = itemRepository.save(item);
     return itemMapper.toDTO(item);
