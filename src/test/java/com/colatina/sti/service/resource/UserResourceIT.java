@@ -48,4 +48,7 @@ public class UserResourceIT extends IntTestComum {
             .andExpect(status().isCreated());
   }
 
+
+
 }
+

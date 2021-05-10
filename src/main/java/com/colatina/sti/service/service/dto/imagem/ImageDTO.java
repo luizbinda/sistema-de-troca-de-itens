@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 
@@ -15,10 +17,14 @@ public class ImageDTO implements Serializable {
 
   private Long id;
 
+  @NotNull(message = "Campo item não pode ser nulo")
   private Item item;
 
+  @NotNull(message = "Campo foto não pode ser nulo")
   private byte[] photo;
 
+  @NotNull(message = "Campo descrição não pode ser nulo")
+  @NotEmpty
   private String description;
 
   public ImageDTO(byte[] photo, Long itemId, String description) {
