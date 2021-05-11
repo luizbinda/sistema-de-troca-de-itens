@@ -1,12 +1,9 @@
 package com.colatina.sti.service.resource;
 
 import com.colatina.sti.service.ServiceApplication;
-import com.colatina.sti.service.builder.ImageBuilder;
 import com.colatina.sti.service.builder.ItemBuilder;
-import com.colatina.sti.service.domain.Image;
 import com.colatina.sti.service.domain.Item;
 import com.colatina.sti.service.service.Utils.ConstantsUtils;
-import com.colatina.sti.service.service.mapper.ImageMapper;
 import com.colatina.sti.service.service.mapper.ItemMapper;
 import com.colatina.sti.service.util.IntTestComum;
 import com.colatina.sti.service.util.TestUtil;
@@ -20,9 +17,7 @@ import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Objects;
-
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
