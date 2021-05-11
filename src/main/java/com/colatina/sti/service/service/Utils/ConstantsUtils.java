@@ -36,5 +36,10 @@ public class ConstantsUtils {
   public static final String ITEM_NOT_AVAILABLE = "Item não disponivel!";
 
 
-
+  //Item validation Messages
+  public static final String ITEM_NAME_NOT_NULL = "Nome do Item é obrigatório!";
+  public static final String ITEM_AVALICAO_NOT_NULL = "Avaliação do Item é obrigatório!";
+  public static final String ITEM_DESCRICAO_NOT_NULL = "Descrição do Item é obrigatório!";
+  public static final String ITEM_CATEGORIA_NOT_NULL = "Categoria do Item é obrigatório!";
+  public static final String ITEM_USER_NOT_NULL = "Usuário do Item é obrigatório!";
 }

@@ -10,13 +10,19 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashMap;
+
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -38,13 +44,29 @@ class ImageResourceIT extends IntTestComum {
 
 
   @Test
-  public void searchAllUsers() throws Exception {
-    imageBuilder.construir();
-    MockMvc mockaaa = getMockMvc();
-    mockaaa.perform(get(URL)
-            .contentType(TestUtil.APPLICATION_JSON_UTF8))
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$",hasSize(1)));
+  public void searchAllImages() throws Exception {
+    Image image = imageBuilder.construir();
+    MockMultipartFile photo
+            = new MockMultipartFile(
+            "photo",
+            "photo.jpg",
+            MediaType.TEXT_PLAIN_VALUE,
+            image.getPhoto()
+    );
+
+    HashMap<String, String> contentTypeParams = new HashMap<String, String>();
+    contentTypeParams.put("boundary", "265001916915724");
+    MediaType mediaType = new MediaType("multipart", "form-data", contentTypeParams);
+
+   getMockMvc().perform(post(URL)
+            .param("imageDTO", "{\n" +
+                    "\t\"description\" : \"description\",\n" +
+                    "\t\"item\" : {\n" +
+                    "\t\t\"id\": 1\n" +
+                    "\t}\n" +
+                    "}")
+            .content(photo.getBytes()).contentType(mediaType))
+            .andReturn().getResponse().getContentAsString();
   }
 
   @Test
@@ -57,21 +79,55 @@ class ImageResourceIT extends IntTestComum {
 
   @Test
   public void storeImage() throws Exception{
-    Image image = imageBuilder.construirEntidade();
+    Image image = imageBuilder.construir();
+    MockMultipartFile photo
+            = new MockMultipartFile(
+            "photo",
+            "photo.jpg",
+            MediaType.TEXT_PLAIN_VALUE,
+            image.getPhoto()
+    );
+
+    HashMap<String, String> contentTypeParams = new HashMap<String, String>();
+    contentTypeParams.put("boundary", "265001916915724");
+    MediaType mediaType = new MediaType("multipart", "form-data", contentTypeParams);
+
     getMockMvc().perform(post(URL)
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(imageMapper.toDTO(image))))
-            .andExpect(status().isCreated());
+            .param("imageDTO", "{\n" +
+                    "\t\"description\" : \"description\",\n" +
+                    "\t\"item\" : {\n" +
+                    "\t\t\"id\": 1\n" +
+                    "\t}\n" +
+                    "}")
+            .content(photo.getBytes()).contentType(mediaType))
+            .andReturn().getResponse().getContentAsString();
   }
 
   @Test
   public void updateImage() throws Exception{
     Image image = imageBuilder.construir();
     image.setDescription("imagem alterada");
+    MockMultipartFile photo
+            = new MockMultipartFile(
+            "photo",
+            "photo.jpg",
+            MediaType.TEXT_PLAIN_VALUE,
+            image.getPhoto()
+    );
+
+    HashMap<String, String> contentTypeParams = new HashMap<String, String>();
+    contentTypeParams.put("boundary", "265001916915724");
+    MediaType mediaType = new MediaType("multipart", "form-data", contentTypeParams);
+
     getMockMvc().perform(put(URL)
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(imageMapper.toDTO(image))))
-            .andExpect(status().isOk());
+            .param("imageDTO", "{\n" +
+                    "\t\"description\" : \"description\",\n" +
+                    "\t\"item\" : {\n" +
+                    "\t\t\"id\": 1\n" +
+                    "\t}\n" +
+                    "}")
+            .content(photo.getBytes()).contentType(mediaType))
+            .andReturn().getResponse().getContentAsString();
   }
 
 }

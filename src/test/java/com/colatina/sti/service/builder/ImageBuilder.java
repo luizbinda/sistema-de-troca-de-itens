@@ -41,7 +41,7 @@ public class ImageBuilder extends ConstrutorEntidade<Image>{
 
   @Override
   public Image persistir(Image entidade) {
-    ImageListDTO store = imageService.store(imageMapper.toDTO(entidade));
+    ImageListDTO store = imageService.save(imageMapper.toDTO(entidade));
     return imageListMapper.toEntity(store);
   }
 }
