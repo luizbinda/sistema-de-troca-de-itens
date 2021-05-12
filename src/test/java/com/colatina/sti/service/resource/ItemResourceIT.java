@@ -89,7 +89,7 @@ class ItemResourceIT extends IntTestComum {
             .andExpect(status().isBadRequest())
             .andExpect(mvcResult -> Assertions.assertTrue(
                     Objects.requireNonNull(mvcResult.getResolvedException()).getMessage()
-                            .contains(ConstantsUtils.ITEM_NAME_NOT_NULL)
+                            .contains(ConstantsUtils.ITEM_NAME_NOT_EMPITY)
             ));
   }
 
@@ -131,7 +131,7 @@ class ItemResourceIT extends IntTestComum {
             .andExpect(status().isBadRequest())
             .andExpect(mvcResult -> Assertions.assertTrue(
                     Objects.requireNonNull(mvcResult.getResolvedException()).getMessage()
-                            .contains(ConstantsUtils.ITEM_DESCRICAO_NOT_NULL)
+                            .contains(ConstantsUtils.ITEM_DESCRICAO_NOT_EMPITY)
             ));
   }
 

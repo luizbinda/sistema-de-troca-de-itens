@@ -25,7 +25,7 @@ public class ImageDTO implements Serializable {
   private byte[] photo;
 
   @NotNull(message = "Campo descrição não pode ser nulo")
-  @NotEmpty
+  @NotEmpty(message = "Campo descrição não pode estar vazio")
   private String description;
 
   public ImageDTO(byte[] photo, Long itemId, String description) {

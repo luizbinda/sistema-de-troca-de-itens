@@ -15,11 +15,11 @@ public class ItemDTO implements Serializable {
   private Long id;
 
   @NotNull(message = "Campo nome não pode ser nulo")
-  @NotEmpty
+  @NotEmpty(message = "Campo nome não pode estar vazio")
   private String name;
 
   @NotNull(message = "Campo descrição não pode ser nulo")
-  @NotEmpty
+  @NotEmpty(message = "Campo descrição não pode estar vazio")
   private String description;
 
   @NotNull(message = "Campo disponibilidade não pode ser nulo")
