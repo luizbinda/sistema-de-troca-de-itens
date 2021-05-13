@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -34,12 +35,12 @@ public class ItemResource {
   }
 
   @PostMapping
-  public ResponseEntity<ItemDTO> store(@RequestBody ItemDTO itemDto) {
+  public ResponseEntity<ItemDTO> store(@Valid @RequestBody ItemDTO itemDto) {
     return  new ResponseEntity<>(itemService.save(itemDto), HttpStatus.CREATED);
   }
 
   @PutMapping
-  public ResponseEntity<ItemDTO> update(@RequestBody ItemDTO itemDto) {
+  public ResponseEntity<ItemDTO> update(@Valid @RequestBody ItemDTO itemDto) {
     return  new ResponseEntity<>(itemService.save(itemDto), HttpStatus.OK);
   }
 

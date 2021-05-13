@@ -36,5 +36,12 @@ public class ConstantsUtils {
   public static final String ITEM_NOT_AVAILABLE = "Item não disponivel!";
 
 
-
+  //Item validation Messages
+  public static final String ITEM_NAME_NOT_NULL = "Campo nome não pode ser nulo";
+  public static final String ITEM_NAME_NOT_EMPITY = "Campo nome não pode estar vazio";
+  public static final String ITEM_AVALICAO_NOT_NULL = "Campo disponibilidade não pode ser nulo";
+  public static final String ITEM_DESCRICAO_NOT_NULL = "Campo descrição não pode ser nulo";
+  public static final String ITEM_DESCRICAO_NOT_EMPITY = "Campo descrição não pode estar vazio";
+  public static final String ITEM_CATEGORIA_NOT_NULL = "Campo categoria não pode ser nulo";
+  public static final String ITEM_USER_NOT_NULL = "Campo Usuário não pode ser nulo";
 }
