@@ -42,6 +42,12 @@ spring:
                         enable: true
                         required: true
                     quitwait: false
+    elasticsearch:
+      rest:
+          uris: localhost:9200
+          connection-timeout: 1s
+          read-timeout: 1m
+
 server:
     port: 8080
     error:
