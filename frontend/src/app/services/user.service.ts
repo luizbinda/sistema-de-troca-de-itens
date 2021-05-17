@@ -22,7 +22,7 @@ export class UserService {
     }
 
     show(id: number) {
-        return this.http.get(`${this.api}/${id}`);
+        return this.http.get<any>(`${this.api}/${id}`);
     }
 
     delete(id: number) {
