@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "queue.order.name=OrderQueue",
+      "type": "java.lang.String",
+      "description": "Description for queue.order.name=OrderQueue."
+  }
+] }
