@@ -14,6 +14,10 @@ export class ItemService {
         return this.http.get<ItemModel[]>(this.api);
     }
 
+    findAllByUserId(userId) {
+        return this.http.get<ItemModel[]>(`${this.api}/user/${userId}`);
+    }
+
     store(item: ItemModel) {
         return this.http.post<ItemModel>(this.api, item);
     }

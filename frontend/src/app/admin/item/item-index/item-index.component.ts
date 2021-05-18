@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PageNotificationService } from '@nuvem/primeng-components';
 import {ItemService} from "../../../services/item.service";
 import {ItemModel} from "../../models/itemModel";
+import {UserModel} from "../../models/userModel";
 
 @Component({
   selector: 'app-item-index',
@@ -13,6 +14,7 @@ export class ItemIndexComponent implements OnInit {
     items: ItemModel[] = [];
     displayModal = false;
     itemEdit: ItemModel = new ItemModel();
+    user : UserModel = new UserModel(1)
     constructor(
       private itemService: ItemService,
     ) {}
@@ -22,7 +24,7 @@ export class ItemIndexComponent implements OnInit {
     }
 
     getAllItems() {
-      this.itemService.index().subscribe( items => this.items = items);
+      this.itemService.findAllByUserId(this.user.id).subscribe( items => this.items = items);
     }
 
     showModalDialog(value: boolean) {

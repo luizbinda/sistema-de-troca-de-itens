@@ -35,7 +35,6 @@ export class ItemFormComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnChanges(): void {
-        this.form.reset();
         if (this.itemEdit.id) {
             this.form.patchValue({
                 ...this.itemEdit,
