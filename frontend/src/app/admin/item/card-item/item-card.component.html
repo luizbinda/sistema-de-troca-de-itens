@@ -1,5 +1,9 @@
 <div class="item-container">
-    <p-card subheader="Categoria: {{item.category.description}}" class="item-card" styleClass="ui-card-shadow">
+    <p-card
+        subheader="Categoria: {{item.category.description}}"
+        class="item-card" styleClass="ui-card-shadow"
+        (click)="emitEditItem()"
+    >
         <p-header>
             <img src="Card" src="assets/img.png">
         </p-header>

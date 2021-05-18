@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ItemModel} from "../../models/itemModel";
 
 @Component({
@@ -9,8 +9,15 @@ import {ItemModel} from "../../models/itemModel";
 export class ItemCardComponent implements OnInit {
 
   @Input() item: ItemModel;
+  @Output() editItem = new EventEmitter<ItemModel>();
 
   ngOnInit(): void {
   }
+
+  emitEditItem() {
+      this.editItem.emit(this.item);
+  }
+
+
 
 }

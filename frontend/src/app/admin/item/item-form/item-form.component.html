@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="saveUser()">
     <div class="ui-fluid"  [style]="{height: '60vh'}">
         <div class="p-field form-padding">
             <label for="name">Nome</label>
@@ -26,11 +26,22 @@
                 [showClear]="true"
             ></p-dropdown>
         </div>
-
     </div>
     <p-footer>
-        <button type="button" pButton icon="pi pi-check" (click)="saveUSer()" label="Yes"></button>
-        <button type="button" pButton icon="pi pi-times" (click)="emitDisplayModal(false)" label="No" class="ui-button-secondary"></button>
+        <button
+            type="submit"
+            pButton
+            icon="pi pi-check"
+            label="Yes"
+            [disabled]="!form.valid || submited"
+        ></button>
+        <button
+            type="button"
+            pButton icon="pi pi-times"
+            (click)="emitDisplayModal(false)"
+            label="No"
+            class="ui-button-secondary"
+        ></button>
     </p-footer>
 </form>
 

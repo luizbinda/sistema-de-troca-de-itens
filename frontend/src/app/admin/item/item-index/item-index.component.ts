@@ -12,10 +12,9 @@ export class ItemIndexComponent implements OnInit {
 
     items: ItemModel[] = [];
     displayModal = false;
-
+    itemEdit: ItemModel = new ItemModel();
     constructor(
       private itemService: ItemService,
-      private notification: PageNotificationService
     ) {}
 
     ngOnInit(): void {
@@ -28,6 +27,11 @@ export class ItemIndexComponent implements OnInit {
 
     showModalDialog(value: boolean) {
         this.displayModal = value;
+    }
+
+    showModalDialogEdite(item: ItemModel) {
+        this.displayModal = true;
+        this.itemEdit = item;
     }
 
     closeModalDialog() {

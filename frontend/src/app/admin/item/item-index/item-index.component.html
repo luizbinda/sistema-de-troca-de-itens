@@ -9,10 +9,14 @@
     [draggable]="false"
     [resizable]="false"
 >
-    <app-item-form (displayModal)="showModalDialog($event)"></app-item-form>
+    <app-item-form
+        (displayModal)="showModalDialog($event)"
+        (updateItens)="getAllItems()"
+        [itemEdit]="itemEdit"
+    ></app-item-form>
 </p-dialog>
 
 <div class="item-container">
-    <app-item-card  *ngFor="let item of items" [item]="item"></app-item-card>
+    <app-item-card  *ngFor="let item of items" [item]="item" (editItem)="showModalDialogEdite($event)"></app-item-card>
 </div>
 
