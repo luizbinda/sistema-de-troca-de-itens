@@ -12,4 +12,6 @@
     <include file="config/liquibase/changelogs/202104282134_create_situation_offer.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelogs/202104282137_create_offer.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelogs/202104282139_create_item_offer.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelogs/202105042154_insert_situation_offer.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelogs/202105042184_insert_category.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

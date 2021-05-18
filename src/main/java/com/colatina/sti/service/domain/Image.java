@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name = "image")
+@Table(name = "image", schema = "public")
 public class Image implements Serializable {
 
     @Id
@@ -19,7 +19,7 @@ public class Image implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_item")
-    private Item Item;
+    private Item item;
 
     @Lob
     @Column(name = "photo")

@@ -2,7 +2,6 @@ package com.colatina.sti.service.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "offer")
+@Table(name = "offer", schema = "public")
 public class Offer implements Serializable {
 
     @Id
@@ -21,7 +20,7 @@ public class Offer implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_item")
-    private Item Item;
+    private Item item;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_situation")
@@ -36,6 +35,6 @@ public class Offer implements Serializable {
                joinColumns = { @JoinColumn(name = "id_offer") },
                inverseJoinColumns = { @JoinColumn(name = "id_item_offer") }
     )
-    private List<Item> itens_ofertados;
+    private List<Item> itemsOffered;
 
 }
