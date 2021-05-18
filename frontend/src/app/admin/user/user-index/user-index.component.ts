@@ -52,15 +52,9 @@ export class UserIndexComponent implements OnInit {
     }
 
     saveUSer() {
-        // this.displayModal = false;
-        // this.notification.addSuccessMessage("Salvo com Sucesso");
-        //this.subimit=true
-
-        //usar isEditing
         if(this.form.value.id){
             this.userService.update(this.form.value).pipe(
                 finalize(() => {
-                    // this.submit = false;
                     this.closeModalDialog();
                 }
                 )
@@ -89,13 +83,8 @@ export class UserIndexComponent implements OnInit {
         }
     }
 
-    deleteUser(id){
-        console.log(id);
-    }
-
     editUser(id){
         this.isEditing = true;
-        console.log(id);
         this.userService.show(id).subscribe(
             (user) => {
                 this.displayModal = true;
