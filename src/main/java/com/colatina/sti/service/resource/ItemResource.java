@@ -29,6 +29,11 @@ public class ItemResource {
     return  new ResponseEntity<>(itemService.index(), HttpStatus.OK);
   }
 
+  @GetMapping("user/{userId}")
+  public ResponseEntity<List<ItemListDTO>> findAllByUser(@PathVariable Long userId) {
+    return  new ResponseEntity<>(itemService.findAllByUser(userId), HttpStatus.OK);
+  }
+
   @GetMapping("/{id}")
   public ResponseEntity<ItemListDTO> show(@PathVariable Long id) {
     return  new ResponseEntity<>(itemService.show(id), HttpStatus.OK);
