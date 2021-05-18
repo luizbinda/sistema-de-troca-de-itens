@@ -16,9 +16,6 @@ import { VersionTagModule } from '@nuvem/angular-base';
     AppFooterComponent,
   ],
   imports: [
-    // BlockUIModule.forRoot({
-    //   message: 'Carregando...'
-    // }),
     CommonModule,
     AdminRoutingModule,
     SharedModule,

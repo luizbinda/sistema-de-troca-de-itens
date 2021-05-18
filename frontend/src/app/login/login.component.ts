@@ -34,19 +34,20 @@ export class LoginComponent implements OnInit {
 
   login(){
     this.submit = true;
-    this.loginService.login(this.form.value).pipe(
-      finalize(() => {
-        this.submit = false;
-        this.form.reset;
-      })
-    ).subscribe(
-      (data) => {
-        console.log(data);
-        localStorage.setItem('token', this.form.get('token').value);
-        localStorage.setItem('usuario', JSON.stringify(data));
-        this.router.navigate(['admin']);
-      }
-    )
+      this.router.navigate(['admin']);
+    // this.loginService.login(this.form.value).pipe(
+    //   finalize(() => {
+    //     this.submit = false;
+    //     this.form.reset;
+    //   })
+    // ).subscribe(
+    //   (data) => {
+    //     console.log(data);
+    //     localStorage.setItem('token', this.form.get('token').value);
+    //     localStorage.setItem('usuario', JSON.stringify(data));
+    //     this.router.navigate(['admin']);
+    //   }
+    // )
   }
 
 }

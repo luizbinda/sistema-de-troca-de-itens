@@ -1,0 +1,37 @@
+<form [formGroup]="form">
+    <div class="ui-fluid"  [style]="{height: '60vh'}">
+        <div class="p-field form-padding">
+            <label for="name">Nome</label>
+            <input
+                id="name"
+                type="text"
+                pInputText
+                formControlName="name"
+            >
+        </div>
+        <div class="p-field form-padding">
+            <label for="description">Descrição</label>
+            <input
+                id="description"
+                type="text"
+                pInputText
+                formControlName="description"
+            >
+        </div>
+        <div class="p-field form-padding">
+            <p-dropdown
+                [options]="categories"
+                placeholder="Selecione uma Categories"
+                formControlName="categoryId"
+                [showClear]="true"
+            ></p-dropdown>
+        </div>
+
+    </div>
+    <p-footer>
+        <button type="button" pButton icon="pi pi-check" (click)="saveUSer()" label="Yes"></button>
+        <button type="button" pButton icon="pi pi-times" (click)="emitDisplayModal(false)" label="No" class="ui-button-secondary"></button>
+    </p-footer>
+</form>
+
+

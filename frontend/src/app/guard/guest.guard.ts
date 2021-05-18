@@ -13,13 +13,13 @@ export class GuestGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       let token = localStorage.getItem('token');
-    
-      if (!token){
+
+      if (!token) {
         return true;
       }
 
       this.rout.navigate(['./admin']);
       return false;
   }
-  
+
 }

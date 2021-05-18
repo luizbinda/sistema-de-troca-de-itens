@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../services/user.service';
+import {UserService} from '../../../services/user.service';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import { PageNotificationService } from '@nuvem/primeng-components';
 import { finalize } from 'rxjs/operators';
@@ -33,7 +33,7 @@ export class UserIndexComponent implements OnInit {
           name : [] ,
           email : [] ,
           cpf : [] ,
-          id : [] 
+          id : []
       });
   }
 
@@ -55,7 +55,7 @@ export class UserIndexComponent implements OnInit {
         // this.displayModal = false;
         // this.notification.addSuccessMessage("Salvo com Sucesso");
         //this.subimit=true
-        
+
         //usar isEditing
         if(this.form.value.id){
             this.userService.update(this.form.value).pipe(
