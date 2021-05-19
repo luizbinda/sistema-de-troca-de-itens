@@ -22,17 +22,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity.csrf().disable().authorizeRequests()
-                .antMatchers("/api/users","/api/images","/api/itens","/api/offers").permitAll()
-                .antMatchers(HttpMethod.POST, "api/users","/api/images","/api/itens","/api/offers").permitAll()
-                .antMatchers(HttpMethod.PUT, "/api/users","/api/images","/api/itens","/api/offers").permitAll()
-                .antMatchers(HttpMethod.DELETE, "/api/users","/api/images","/api/itens","/api/offers").permitAll()
+//                .antMatchers("/api/users","api/users/**","/api/images","/api/itens","/api/offers").permitAll()
+                .antMatchers("/api/users/**","api/users").permitAll()
+                .antMatchers(HttpMethod.POST, "api/users").permitAll()
+//                .antMatchers(HttpMethod.PUT, "/api/users","/api/images","/api/itens","/api/offers").permitAll()
+//                .antMatchers(HttpMethod.DELETE, "/api/users","/api/images","/api/itens","/api/offers").permitAll()
                 .anyRequest().authenticated()
-                .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/",true)
-                    .failureUrl("/login")
-                    .permitAll()
+//                .and()
+//                    .formLogin()
+//                    .loginPage("/login")
+//                    .defaultSuccessUrl("/",true)
+//                    .failureUrl("/login")
+//                    .permitAll()
         ;
     }
 

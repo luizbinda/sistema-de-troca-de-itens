@@ -6,6 +6,7 @@ import com.colatina.sti.service.service.Utils.ConstantsUtils;
 import com.colatina.sti.service.service.dto.email.EmailDTO;
 import com.colatina.sti.service.service.dto.user.UserDTO;
 import com.colatina.sti.service.service.dto.user.UserListDTO;
+import com.colatina.sti.service.service.dto.user.UserLoginDTO;
 import com.colatina.sti.service.service.exception.RegraNegocioException;
 import com.colatina.sti.service.service.mapper.UserListMapper;
 import com.colatina.sti.service.service.mapper.UserMapper;
@@ -17,9 +18,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
-import java.util.Random;
 
 @Service
 @Transactional
@@ -29,7 +28,6 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final UserListMapper userListMapper;
     private final UserMapper userMapper;
-    private final Random rand = new Random();
     private final EmailService emailService;
 
     public List<UserListDTO> index() {
@@ -41,6 +39,15 @@ public class UserService implements UserDetailsService {
         User User = userRepository.findById(id)
                 .orElseThrow(() -> new RegraNegocioException(ConstantsUtils.USER_NOT_FOUND));
         return userMapper.toDTO(User);
+    }
+
+    public UserDTO login(UserLoginDTO userLoginDTO) {
+        User user = userRepository.findDistinctFirstByEmail(userLoginDTO.getEmail());
+        if (user != null && user.getToken() != null){
+            if(new BCryptPasswordEncoder(). matches(userLoginDTO.getPassword(), user.getToken()))
+                return userMapper.toDTO(user);
+        }
+        return userMapper.toDTO(new User());
     }
 
     public UserDTO store(UserDTO userDTO) {
