@@ -5,5 +5,6 @@ export class UserModel {
         public email?: string,
         public cpf?: string,
         public token?: string,
+        public birthDate?: Date,
     ) {}
 }
