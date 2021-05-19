@@ -1,0 +1,68 @@
+<div class="item-container">
+    <p-card
+        header="{{item.name}}"
+        subheader="Categoria: {{item.category.description}}"
+        class="item-card" styleClass="ui-card-shadow"
+    >
+        <p-header>
+            <p-carousel
+                styleClass="items-carousel"
+                [value]="item.images"
+                [style]="{'max-width':'400px', 'margin-top':'2em'}"
+                verticalViewPortHeight="250px"
+                [numVisible]="1"
+                [numScroll]="1"
+                *ngIf="item.images.length"
+            >
+                <ng-template let-image pTemplate="item">
+                    <div class="car-details">
+                        <div class="p-grid p-nogutter">
+                            <div class="p-col-12">
+                                <img [src]="urlImage(image.photo)" [alt]="image.description" />
+                            </div>
+                            <div>
+                                <button pButton type="button" class="ui-button-secondary" icon="pi pi-plus"></button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+            <p-carousel
+                styleClass="items-carousel"
+                *ngIf="!item.images.length"
+                [value]="[1]"
+                [style]="{'max-width':'400px', 'margin-top':'2em'}"
+                verticalViewPortHeight="250px"
+                [numVisible]="1"
+                [numScroll]="1"
+            >
+                <ng-template pTemplate="item">
+                    <div class="car-details">
+                        <div class="p-grid p-nogutter">
+                            <div class="p-col-12">
+                                <img src="assets/img.png" alt="image" />
+                            </div>
+                            <div>
+                                <button pButton type="button" class="ui-button-secondary" icon="pi pi-plus"></button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </p-header>
+        <div>
+            <strong>Descrição: </strong> {{item.description}}
+        </div>
+        <div>
+            <strong>Usuario:</strong> {{item.user.name}}
+        </div>
+        <div>
+            <strong>Email:</strong> {{item.user.email}}
+        </div>
+        <p-footer>
+            <div>
+                <strong>Usuario:</strong> {{item.user.name}}
+            </div>
+        </p-footer>
+    </p-card>
+</div>
