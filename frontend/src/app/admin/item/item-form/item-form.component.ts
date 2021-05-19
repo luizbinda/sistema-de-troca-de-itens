@@ -1,19 +1,19 @@
-import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import { PageNotificationService } from '@nuvem/primeng-components';
 import { finalize } from 'rxjs/operators';
 import {ItemService} from "../../../services/item.service";
 import {Constants} from "../../../shared/Constants";
 import {categories} from "../../../shared/Categories";
 import {UserModel} from "../../models/userModel";
 import {ItemModel} from "../../models/itemModel";
+import {PageNotificationService} from "@nuvem/primeng-components";
 
 @Component({
   selector: 'app-item-form',
   templateUrl: './item-form.component.html',
   styleUrls: ['./item-form.component.css']
 })
-export class ItemFormComponent implements OnInit, OnChanges, OnDestroy {
+export class ItemFormComponent implements OnInit, OnChanges {
 
     form: FormGroup;
     isEditing: boolean = false;
@@ -42,10 +42,6 @@ export class ItemFormComponent implements OnInit, OnChanges, OnDestroy {
                 userId: this.itemEdit.user.id
             })
         }
-    }
-
-    ngOnDestroy() {
-        console.log("teste")
     }
 
     emitDisplayModal(value: boolean) {
@@ -82,7 +78,7 @@ export class ItemFormComponent implements OnInit, OnChanges, OnDestroy {
             this.itemService.update(this.form.value).pipe(finalize(() => this.submitedFinished()))
                 .subscribe(
                 () => {
-                    // this.notification.addSuccessMessage(Constants.SAVED_SUCCESSFULY);
+                    this.notification.addSuccessMessage(Constants.SAVED_SUCCESSFULY);
                 },() => {
                     this.notification.addErrorMessage("Falha ao Atualizar");
                 }
@@ -91,7 +87,7 @@ export class ItemFormComponent implements OnInit, OnChanges, OnDestroy {
             this.itemService.store(this.form.value).pipe(finalize(() => this.submitedFinished()))
                 .subscribe(
                 () => {
-                    // this.notification.addSuccessMessage(Constants.SAVED_SUCCESSFULY);
+                    this.notification.addSuccessMessage(Constants.SAVED_SUCCESSFULY);
                 },
                 () => {
                     this.notification.addErrorMessage(Constants.SAVED_ERROR);

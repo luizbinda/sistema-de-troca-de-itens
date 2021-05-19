@@ -26,6 +26,12 @@
                 [showClear]="true"
             ></p-dropdown>
         </div>
+        <div class="p-field form-padding" *ngIf="form.value.id">
+            <label>Disponível para Ofertas?</label>
+            <div>
+                <p-inputSwitch formControlName="available"></p-inputSwitch>
+            </div>
+        </div>
     </div>
     <p-footer>
         <button

@@ -1,23 +1,43 @@
 <div class="item-container">
     <p-card
+        header="{{item.name}}"
         subheader="Categoria: {{item.category.description}}"
         class="item-card" styleClass="ui-card-shadow"
-        (click)="emitEditItem()"
     >
         <p-header>
-            <img src="Card" src="assets/img.png">
+            <p-carousel [value]="item.images" [numVisible]="4" [numScroll]="3" [circular]="false">
+                <p-header>
+                    <h3>Basic</h3>
+                </p-header>
+                <ng-template let-car pTemplate="item">
+                    <div class="car-details">
+                        <div class="p-grid p-nogutter">
+                            <div class="p-col-12">
+                                <img src="Card" src="assets/img.png">
+                            </div>
+                            <div class="p-col-12 car-data">
+                                <div class="car-buttons">
+                                    <button pButton type="button" class="ui-button-secondary" icon="pi pi-search"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
         </p-header>
         <div>
             <strong>Descrição: </strong> {{item.description}}
+        </div>
+        <div>
+            <strong>Usuario:</strong> {{item.user.name}}
+        </div>
+        <div>
+            <strong>Email:</strong> {{item.user.email}}
         </div>
         <p-footer>
             <div>
                 <strong>Usuario:</strong> {{item.user.name}}
             </div>
-            <div>
-                <strong>Email:</strong> {{item.user.email}}
-            </div>
         </p-footer>
     </p-card>
 </div>
-
