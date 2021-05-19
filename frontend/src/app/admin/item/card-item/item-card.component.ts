@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {ItemModel} from "../../models/itemModel";
-import {ViewEncapsulation} from "@angular/cli/lib/config/schema";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-item-card',
@@ -12,32 +12,16 @@ export class ItemCardComponent implements OnInit {
   @Input() item: ItemModel;
   @Output() editItem = new EventEmitter<ItemModel>();
 
-  responsiveOptions;
-
-    constructor() {
-      this.responsiveOptions = [
-          {
-              breakpoint: '1024px',
-              numVisible: 3,
-              numScroll: 3
-          },
-          {
-              breakpoint: '768px',
-              numVisible: 2,
-              numScroll: 2
-          },
-          {
-              breakpoint: '560px',
-              numVisible: 1,
-              numScroll: 1
-          }
-      ];
-    }
+  constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
   }
 
-  emitEditItem() {
+    urlImage(photo: string): SafeResourceUrl {
+      return this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${photo}`);
+    }
+
+    emitEditItem() {
       this.editItem.emit(this.item);
   }
 

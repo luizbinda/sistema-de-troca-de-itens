@@ -1,3 +1,5 @@
+import {SafeResourceUrl} from "@angular/platform-browser";
+
 export class ImageModel {
     constructor(
         public id?: number,
