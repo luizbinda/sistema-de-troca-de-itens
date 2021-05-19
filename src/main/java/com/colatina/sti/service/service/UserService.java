@@ -10,6 +10,11 @@ import com.colatina.sti.service.service.exception.RegraNegocioException;
 import com.colatina.sti.service.service.mapper.UserListMapper;
 import com.colatina.sti.service.service.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +24,7 @@ import java.util.Random;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final UserListMapper userListMapper;
@@ -48,9 +53,8 @@ public class UserService {
         }
 
         User user = userMapper.toEntity(userDTO);
-        user.setToken(Long.toHexString(rand.nextLong()));
+        user.setToken(new BCryptPasswordEncoder().encode(userDTO.getEmail()));
         user = userRepository.save(user);
-
         emailService.sendEmail(getEmail(user));
 
         return userMapper.toDTO(user);
@@ -91,5 +95,17 @@ public class UserService {
         } catch (Exception e) {
             throw  new RegraNegocioException(ConstantsUtils.USER_NOT_FOUND);
         }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findDistinctFirstByEmail(email);
+
+        return new org.springframework.security.core.userdetails.
+                User(
+                        user.getEmail(),
+                        user.getToken(),
+                        AuthorityUtils.createAuthorityList("admin")
+        );
     }
 }
