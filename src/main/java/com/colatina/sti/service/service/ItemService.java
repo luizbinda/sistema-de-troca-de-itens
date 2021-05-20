@@ -28,11 +28,6 @@ public class ItemService {
     return itemListMapper.listToDTO(list);
   }
 
-  public List<ItemListDTO> findAllByUser(Long userId) {
-    List<Item> list = itemRepository.findAllByUserId(userId);
-    return itemListMapper.listToDTO(list);
-  }
-
   public ItemListDTO show(Long id) {
     Item item = itemRepository.findById(id)
             .orElseThrow(() -> new RegraNegocioException("Nenhum item encontrado!"));
