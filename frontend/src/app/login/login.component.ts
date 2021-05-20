@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
   login(){
     this.submit = true;
-      this.router.navigate(['admin']);
+    this.router.navigate(['admin']);
   }
 
 }
