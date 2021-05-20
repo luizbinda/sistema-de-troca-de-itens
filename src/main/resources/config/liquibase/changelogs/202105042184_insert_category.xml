@@ -6,7 +6,28 @@
     <changeSet id="202104282037-01" author="luiz.pimenta">
         <insert  schemaName="public" tableName="category">
             <column  name="id"  value="1"/>
-            <column name="description" value="pendente"/>
+            <column name="description" value="Antiguidade"/>
         </insert>
+        <insert  schemaName="public" tableName="category">
+            <column  name="id"  value="2"/>
+            <column name="description" value="Vestuário"/>
+        </insert>
+        <insert  schemaName="public" tableName="category">
+            <column  name="id"  value="3"/>
+            <column name="description" value="Eletro/Eletronico"/>
+        </insert>
+        <insert  schemaName="public" tableName="category">
+            <column  name="id"  value="4"/>
+            <column name="description" value="Móveis"/>
+        </insert>
+        <insert  schemaName="public" tableName="category">
+            <column  name="id"  value="5"/>
+            <column name="description" value="Esporte"/>
+        </insert>
+        <insert  schemaName="public" tableName="category">
+            <column  name="id"  value="6"/>
+            <column name="description" value="Outros"/>
+        </insert>
+
     </changeSet>
 </databaseChangeLog>

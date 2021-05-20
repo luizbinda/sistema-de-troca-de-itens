@@ -3,10 +3,11 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { finalize } from 'rxjs/operators';
 import {ItemService} from "../../../services/item.service";
 import {Constants} from "../../../shared/Constants";
-import {categories} from "../../../shared/Categories";
 import {UserModel} from "../../models/userModel";
 import {ItemModel} from "../../models/itemModel";
 import {PageNotificationService} from "@nuvem/primeng-components";
+import {CategoryModel} from "../../models/categoryModel";
+import {SelectModel} from "../../models/selectModel";
 
 @Component({
   selector: 'app-item-form',
@@ -18,7 +19,7 @@ export class ItemFormComponent implements OnInit, OnChanges {
     form: FormGroup;
     isEditing: boolean = false;
     submited: boolean = false;
-    categories = categories.map( category => ({value: category.id, label: category.description}));
+    categories: SelectModel[];
     user : UserModel = new UserModel(1)
     @Output() displayModal = new EventEmitter<boolean>();
     @Output() updateItens = new EventEmitter<void>();
@@ -31,7 +32,14 @@ export class ItemFormComponent implements OnInit, OnChanges {
     ) {}
 
     ngOnInit(): void {
+      this.getCategories();
       this.initForm();
+    }
+
+    getCategories() {
+        this.itemService.getAllCategories().subscribe(
+            categories => this.categories = categories.map( category => ({value: category.id, label: category.description}))
+        );
     }
 
     ngOnChanges(): void {
