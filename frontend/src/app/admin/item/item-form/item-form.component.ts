@@ -80,7 +80,7 @@ export class ItemFormComponent implements OnInit, OnChanges {
                 () => {
                     this.notification.addSuccessMessage(Constants.SAVED_SUCCESSFULY);
                 },() => {
-                    this.notification.addErrorMessage("Falha ao Atualizar");
+                    this.notification.addErrorMessage(Constants.SAVED_ERROR);
                 }
             )
         }else{
