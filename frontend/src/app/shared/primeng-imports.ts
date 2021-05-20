@@ -126,4 +126,5 @@ export const PRIMENG_IMPORTS = [
     TooltipModule,
     TreeModule,
     TreeTableModule,
+    ConfirmDialogModule
 ];

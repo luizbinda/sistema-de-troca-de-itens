@@ -1,0 +1,30 @@
+<form [formGroup]="form" (ngSubmit)="saveImage()">
+    <div class="ui-fluid"  [style]="{height: '60vh'}">
+        <div class="p-field form-padding">
+            <label for="description">Descrição</label>
+            <input
+                id="description"
+                type="text"
+                pInputText
+                formControlName="description"
+            >
+        </div>
+        <div class="p-field form-padding">
+            <label>Foto</label>
+            <p-fileUpload
+                name="demo[]"
+                accept="image/*"
+                maxFileSize="1000000"
+                customUpload="true"
+                (onSelect)="onUpload($event)"
+                (uploadHandler)="submit()"
+            >
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                    </ul>
+                </ng-template>
+            </p-fileUpload>
+        </div>
+    </div>
+</form>

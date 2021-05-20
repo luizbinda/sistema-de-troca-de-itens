@@ -1,3 +1,4 @@
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
 <div class="item-container">
     <p-card
         header="{{item.name}}"
@@ -15,13 +16,11 @@
                 *ngIf="item.images.length"
             >
                 <ng-template let-image pTemplate="item">
-                    <div class="car-details">
+                    <div>
                         <div class="p-grid p-nogutter">
                             <div class="p-col-12">
                                 <img [src]="urlImage(image.photo)" [alt]="image.description" />
-                            </div>
-                            <div>
-                                <button pButton type="button" class="ui-button-secondary" icon="pi pi-plus"></button>
+                                <button (click)="deleteImage(image.id)" pButton type="button" class="ui-button-danger" icon="ui-icon-delete"></button>
                             </div>
                         </div>
                     </div>
@@ -42,27 +41,41 @@
                             <div class="p-col-12">
                                 <img src="assets/img.png" alt="image" />
                             </div>
-                            <div>
-                                <button pButton type="button" class="ui-button-secondary" icon="pi pi-plus"></button>
-                            </div>
                         </div>
                     </div>
                 </ng-template>
             </p-carousel>
         </p-header>
         <div>
-            <strong>Descrição: </strong> {{item.description}}
-        </div>
-        <div>
-            <strong>Usuario:</strong> {{item.user.name}}
-        </div>
-        <div>
-            <strong>Email:</strong> {{item.user.email}}
+            <p><strong>Descrição: </strong> {{item.description}}</p>
+            <p><strong>Usuario:</strong> {{item.user.name}}</p>
+            <div>
+                <p><strong>Email:</strong> {{item.user.email}}</p>
+                <strong>Usuario:</strong> {{item.user.name}}
+            </div>
         </div>
         <p-footer>
-            <div>
-                <strong>Usuario:</strong> {{item.user.name}}
+            <div class="buton-padding">
+                <button (click)="emitEditItem()" pButton type="button" class="ui-button-secondary buton-margin" icon="ui-icon-pencil"></button>
+                <button (click)="showModalDialog(true)" pButton type="button" class="ui-button-secondary" icon="ui-icon-image"></button>
             </div>
         </p-footer>
     </p-card>
 </div>
+
+<p-dialog
+    header="Cadastrar Imagem"
+    [(visible)]="displayModalImage"
+    [modal]="true"
+    [style]="{width: '80vw', height: '80vh'}"
+    [baseZIndex]="10000"
+    [draggable]="false"
+    [resizable]="false"
+>
+    <app-form-image
+        (displayModalImage)="showModalDialog($event)"
+        (updateImages)="emitGetItems()"
+        [imageEdit]="imageEdit"
+        [item]="item"
+    ></app-form-image>
+</p-dialog>
