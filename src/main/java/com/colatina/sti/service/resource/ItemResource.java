@@ -1,6 +1,8 @@
 package com.colatina.sti.service.resource;
 
+import com.colatina.sti.service.service.CategoryService;
 import com.colatina.sti.service.service.ItemService;
+import com.colatina.sti.service.service.dto.SelectDTO;
 import com.colatina.sti.service.service.dto.item.ItemDTO;
 import com.colatina.sti.service.service.dto.item.ItemListDTO;
 import lombok.RequiredArgsConstructor;
@@ -23,10 +25,21 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemResource {
   private final ItemService itemService;
+  private final CategoryService categoryService;
 
   @GetMapping
   public ResponseEntity<List<ItemListDTO>> index() {
     return  new ResponseEntity<>(itemService.index(), HttpStatus.OK);
+  }
+
+  @GetMapping("/category")
+  public ResponseEntity<List<SelectDTO>> getAllCategories() {
+    return  new ResponseEntity<>(categoryService.index(), HttpStatus.OK);
+  }
+
+  @GetMapping("user/{userId}")
+  public ResponseEntity<List<ItemListDTO>> findAllByUser(@PathVariable Long userId) {
+    return  new ResponseEntity<>(itemService.findAllByUser(userId), HttpStatus.OK);
   }
 
   @GetMapping("/{id}")

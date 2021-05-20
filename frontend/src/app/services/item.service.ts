@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ItemModel} from "../admin/models/itemModel";
+import {CategoryModel} from "../admin/models/categoryModel";
 
 @Injectable({
     providedIn: 'root'
@@ -16,6 +17,10 @@ export class ItemService {
 
     findAllByUserId(userId) {
         return this.http.get<ItemModel[]>(`${this.api}/user/${userId}`);
+    }
+
+    getAllCategories() {
+        return this.http.get<CategoryModel[]>(`${this.api}/category`);
     }
 
     store(item: ItemModel) {
