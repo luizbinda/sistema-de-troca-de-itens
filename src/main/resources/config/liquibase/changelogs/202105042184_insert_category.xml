@@ -6,7 +6,7 @@
     <changeSet id="202104282037-01" author="luiz.pimenta">
         <insert  schemaName="public" tableName="category">
             <column  name="id"  value="1"/>
-            <column  name="description"  value="pendente"/>
+            <column name="description" value="pendente"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
