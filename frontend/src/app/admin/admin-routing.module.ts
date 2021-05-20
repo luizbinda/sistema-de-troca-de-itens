@@ -6,7 +6,8 @@ import { AdminComponent } from './admin.component';
 const routes: Routes = [
   {
     path: '', component: AdminComponent, children: [
-      { path: '', redirectTo: '', pathMatch: 'full' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', loadChildren: () => import('../admin/offer/offer.module').then(m => m.OfferModule) },
       { path: 'users', loadChildren: () => import('../admin/user/user.module').then(m => m.UserModule) },
       { path: 'items', loadChildren: () => import('../admin/item/item.module').then(m => m.ItemModule) }
     ]
