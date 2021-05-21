@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -30,5 +31,5 @@ public class ItemListDTO implements Serializable {
 
   private UserListDTO user;
 
-  private List<ImageListDTO> images;
+  private List<ImageListDTO> images = new ArrayList<>();
 }

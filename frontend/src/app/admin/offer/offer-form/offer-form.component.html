@@ -1,0 +1,19 @@
+<div class="item-container" *ngIf="itemOffer">
+    <app-item-card [item]="itemOffer"> </app-item-card>
+</div>
+<div class="item-container">
+    <app-item-card
+        [class]="isSelected(item.id)"
+        (click)="selectItem(item.id)"
+        *ngFor="let item of itemsView"
+        [item]="item"
+    ></app-item-card>
+</div>
+<div class="button-submit">
+    <button type="button" (click)="submit()" pButton label="Criar oferta"></button>
+</div>
+<p-paginator
+    [rows]="perPage"
+    [totalRecords]="totalRecords"
+    (onPageChange)="paginate($event)"
+></p-paginator>

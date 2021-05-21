@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {OfferFormComponent} from "./offer-form/offer-form.component";
+import {OfferIndexComponent} from "./offer-index/offer-index.component";
 
 const routes: Routes = [
-    { path: '', component: OfferFormComponent},
+    { path: '', component: OfferIndexComponent},
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class OfferRoutingModule { }
+export class DashboardRoutingModule { }

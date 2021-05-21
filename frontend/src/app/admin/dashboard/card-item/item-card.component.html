@@ -1,0 +1,56 @@
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<div class="item-container">
+    <p-card
+        header="{{item.name}}"
+        subheader="Categoria: {{item.category.description}}"
+        class="item-card" styleClass="ui-card-shadow"
+        (click)="redirectOffer()"
+    >
+        <p-header>
+            <p-carousel
+                styleClass="items-carousel"
+                [value]="item.images"
+                [style]="{'max-width':'400px', 'margin-top':'2em'}"
+                verticalViewPortHeight="250px"
+                [numVisible]="1"
+                [numScroll]="1"
+                *ngIf="item.images.length"
+            >
+                <ng-template let-image pTemplate="item">
+                        <div class="p-grid p-nogutter">
+                            <div class="p-col-12">
+                                <img [src]="urlImage(image.photo)" [alt]="image.description" />
+                            </div>
+                        </div>
+                </ng-template>
+            </p-carousel>
+            <p-carousel
+                styleClass="items-carousel"
+                *ngIf="!item.images.length"
+                [value]="[1]"
+                [style]="{'max-width':'400px', 'margin-top':'2em'}"
+                verticalViewPortHeight="250px"
+                [numVisible]="1"
+                [numScroll]="1"
+            >
+                <ng-template pTemplate="item">
+                    <div class="car-details">
+                        <div class="p-grid p-nogutter">
+                            <div class="p-col-12">
+                                <img src="assets/img.png" alt="image" />
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </p-header>
+        <div>
+            <p><strong>Descrição: </strong> {{item.description}}</p>
+            <p><strong>Usuario:</strong> {{item.user.name}}</p>
+            <div>
+                <p><strong>Email:</strong> {{item.user.email}}</p>
+                <strong>Usuario:</strong> {{item.user.name}}
+            </div>
+        </div>
+    </p-card>
+</div>
