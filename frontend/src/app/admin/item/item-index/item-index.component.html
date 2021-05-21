@@ -17,5 +17,11 @@
 </p-dialog>
 
 <div class="item-container">
-    <app-item-card  *ngFor="let item of items" [item]="item" (editItem)="showModalDialogEdite($event)"></app-item-card>
+    <app-item-card
+        *ngFor="let item of items"
+        [item]="item"
+        (editItem)="showModalDialogEdite($event)"
+        (getItens)="getAllItems()"
+    ></app-item-card>
 </div>
+

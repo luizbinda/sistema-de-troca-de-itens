@@ -36,7 +36,7 @@ public class UserResource {
 
     @PostMapping("/login")
     public ResponseEntity<UserDTO> login(@RequestBody @Valid UserLoginDTO userLoginDTO) {
-        UserDTO userDTO = userService.login(userLoginDTO);
+            UserDTO userDTO = userService.login(userLoginDTO);
         if(userDTO.getId() == null)
             return new ResponseEntity<>(userService.login(userLoginDTO), HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(userService.login(userLoginDTO), HttpStatus.OK);

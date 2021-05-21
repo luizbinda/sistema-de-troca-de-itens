@@ -28,7 +28,7 @@ spring:
             hibernate.generate_statistics: false
     liquibase:
         change-log: classpath:/config/liquibase/master.xml
-#        drop-first: true
+        drop-first: true
     mail:
         host: smtp.gmail.com
         port: 587
@@ -45,5 +45,5 @@ spring:
 server:
     port: 8080
     error:
-        include-message: always
+        include -message: always
         include-binding-errors: always

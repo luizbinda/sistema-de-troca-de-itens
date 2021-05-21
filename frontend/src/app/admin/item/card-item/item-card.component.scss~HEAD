@@ -10,9 +10,6 @@
     width: 250px;
     padding: 10px;
     transition: all .2s ease-in-out;
-    img {
-        padding: 5px;
-    }
 }
 
 .item-card:hover {
@@ -24,12 +21,4 @@
     .ui-carousel-dots-container {
         display: none !important;
     }
-}
-
-.buton-padding {
-    padding: 5px;
-}
-
-.buton-margin {
-    margin-right: 5px;
 }

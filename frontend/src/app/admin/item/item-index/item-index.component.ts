@@ -32,8 +32,8 @@ export class ItemIndexComponent implements OnInit {
     }
 
     showModalDialogEdite(item: ItemModel) {
-        this.displayModal = true;
         this.itemEdit = item;
+        this.displayModal = true;
     }
 
     closeModalDialog() {

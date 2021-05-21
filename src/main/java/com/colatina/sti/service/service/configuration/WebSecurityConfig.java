@@ -23,9 +23,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         httpSecurity.csrf().disable().authorizeRequests()
 //                .antMatchers("/api/users","api/users/**","/api/images","/api/itens","/api/offers").permitAll()
-                .antMatchers("/api/users/**","api/users").permitAll()
-                .antMatchers(HttpMethod.POST, "api/users").permitAll()
-//                .antMatchers(HttpMethod.PUT, "/api/users","/api/images","/api/itens","/api/offers").permitAll()
+                .antMatchers("/api/users/**","api/users",
+                              "/api/itens/category","/api/itens/**").permitAll()
+                .antMatchers(HttpMethod.POST, "api/users","/api/itens").permitAll()
+                .antMatchers(HttpMethod.PUT, "/api/users","/api/images","/api/itens","/api/offers").permitAll()
 //                .antMatchers(HttpMethod.DELETE, "/api/users","/api/images","/api/itens","/api/offers").permitAll()
                 .anyRequest().authenticated()
 //                .and()
