@@ -42,6 +42,11 @@ spring:
                         enable: true
                         required: true
                     quitwait: false
+    rabbitmq:
+        port: 56712
+queue:
+    order:
+        name: OrderQueue
 server:
     port: 8080
     error:

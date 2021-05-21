@@ -3,6 +3,7 @@ package com.colatina.sti.service.service;
 import com.colatina.sti.service.domain.User;
 import com.colatina.sti.service.repository.UserRepository;
 import com.colatina.sti.service.service.Utils.ConstantsUtils;
+import com.colatina.sti.service.service.Utils.OrderQueueSender;
 import com.colatina.sti.service.service.dto.email.EmailDTO;
 import com.colatina.sti.service.service.dto.user.UserDTO;
 import com.colatina.sti.service.service.dto.user.UserListDTO;
@@ -29,6 +30,9 @@ public class UserService implements UserDetailsService {
     private final UserListMapper userListMapper;
     private final UserMapper userMapper;
     private final EmailService emailService;
+    private final Random rand = new Random();
+    private final OrderQueueSender orderQueueSender;
+
 
     public List<UserListDTO> index() {
         List<User> list = userRepository.findAll();
@@ -62,6 +66,8 @@ public class UserService implements UserDetailsService {
         User user = userMapper.toEntity(userDTO);
         user.setToken(new BCryptPasswordEncoder().encode(userDTO.getEmail()));
         user = userRepository.save(user);
+
+        orderQueueSender.send(getEmail(user));
         emailService.sendEmail(getEmail(user));
 
         return userMapper.toDTO(user);
