@@ -21,7 +21,7 @@
                 >
             </div>
             <div class="p-field">
-                <label for="email">Firstname</label>
+                <label for="email">Email</label>
                 <input
                     id="email"
                     type="email"
@@ -35,6 +35,7 @@
                     mask="999.999.999.-99"
                     pInputText
                     formControlName="cpf"
+                    unmask="true"
                 ></p-inputMask>
             </div>
             <div class="p-field">
@@ -55,6 +56,7 @@
             <th>Name</th>
             <th>birthDate</th>
             <th>email</th>
+            <th>Actions</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-user>
@@ -63,6 +65,10 @@
             <td>{{user.name}}</td>
             <td>{{user.birthDate}}</td>
             <td>{{user.email}}</td>
+            <td>
+                <button type="button" (click)="deleteUser(user.id)" class="ui-button-danger" pButton label="Delete User"></button>
+                <button type="button" (click)="editUser(user.id)" pButton label="Alter User"></button>
+            </td>
         </tr>
     </ng-template>
 </p-table>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {UserModel} from "../admin/models/userModel";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
     index() {
-        return this.http.get<any[]>(this.api);
+        return this.http.get<UserModel[]>(this.api);
     }
 
     store(user) {
@@ -22,7 +23,7 @@ export class UserService {
     }
 
     show(id: number) {
-        return this.http.get(`${this.api}/${id}`);
+        return this.http.get<UserModel>(`${this.api}/${id}`);
     }
 
     delete(id: number) {

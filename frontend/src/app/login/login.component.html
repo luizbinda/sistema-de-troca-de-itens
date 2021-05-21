@@ -1,0 +1,14 @@
+<h3>Vertical</h3>
+<form [formGroup]="form" (ngSubmit)="login()">
+    <div class="ui-fluid">
+        <div class="p-field">
+            <label for="email">Email</label>
+            <input id="email" type="text" pInputText formControlName="email">
+        </div>
+        <div class="p-field">
+            <label for="token">Senha</label>
+            <input id="token" type="text" pInputText formControlName="token">
+        </div>
+        <button pButton type="submit" label="Logar" [disabled]="form.invalid || submit"></button>
+    </div>
+</form>
