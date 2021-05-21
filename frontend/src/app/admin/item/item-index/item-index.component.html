@@ -1,0 +1,27 @@
+<h3>Itens</h3>
+<button type="button" (click)="showModalDialog(true)" pButton label="Cadastrar Item"></button>
+<p-dialog
+    header="Cadastrar Items"
+    [(visible)]="displayModal"
+    [modal]="true"
+    [style]="{width: '80vw', height: '80vh'}"
+    [baseZIndex]="10000"
+    [draggable]="false"
+    [resizable]="false"
+>
+    <app-item-form
+        (displayModal)="showModalDialog($event)"
+        (updateItens)="getAllItems()"
+        [itemEdit]="itemEdit"
+    ></app-item-form>
+</p-dialog>
+
+<div class="item-container">
+    <app-item-card
+        *ngFor="let item of items"
+        [item]="item"
+        (editItem)="showModalDialogEdite($event)"
+        (getItens)="getAllItems()"
+    ></app-item-card>
+</div>
+

@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { environment } from '../environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { PageNotificationModule, BreadcrumbModule, MenuModule, ErrorStackModule } from '@nuvem/primeng-components';
-import { ErrorModule, SecurityModule, VersionTagModule } from '@nuvem/angular-base';
+import { PageNotificationModule,  ErrorStackModule } from '@nuvem/primeng-components';
+import { ErrorModule, SecurityModule } from '@nuvem/angular-base';
 import { DiarioErrosComponent } from './components/diario-erros/diario-erros.component';
 import { BlockUIModule } from 'ng-block-ui';
 import { LoginComponent } from './login/login.component';
@@ -25,7 +25,7 @@ import { TokenInterceptor } from 'src/interceptors/token.interceptor';
         BlockUIModule.forRoot({
             message: 'Carregando...'
           }),
-        ReactiveFormsModule,  
+        ReactiveFormsModule,
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
