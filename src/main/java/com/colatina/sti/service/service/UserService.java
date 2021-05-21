@@ -30,7 +30,6 @@ public class UserService implements UserDetailsService {
     private final UserListMapper userListMapper;
     private final UserMapper userMapper;
     private final EmailService emailService;
-    private final Random rand = new Random();
     private final OrderQueueSender orderQueueSender;
 
 
