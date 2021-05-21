@@ -111,6 +111,12 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-amqp</artifactId>
 			</dependency>
+			<dependency>
+				<groupId>org.springframework.amqp</groupId>
+				<artifactId>spring-rabbit</artifactId>
+			</dependency>
+<!--			link para download manuel das depencia caso intelij não conseguir baixar -->
+<!--			https://jar-download.com/artifacts/org.springframework.amqp/spring-rabbit-->
 		</dependencies>
 	</dependencyManagement>
 

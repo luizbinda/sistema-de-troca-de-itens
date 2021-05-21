@@ -3,6 +3,7 @@ package com.colatina.sti.service.service;
 import com.colatina.sti.service.domain.User;
 import com.colatina.sti.service.repository.UserRepository;
 import com.colatina.sti.service.service.Utils.ConstantsUtils;
+import com.colatina.sti.service.service.Utils.OrderQueueSender;
 import com.colatina.sti.service.service.dto.email.EmailDTO;
 import com.colatina.sti.service.service.dto.user.UserDTO;
 import com.colatina.sti.service.service.dto.user.UserListDTO;
@@ -25,7 +26,8 @@ public class UserService {
     private final UserListMapper userListMapper;
     private final UserMapper userMapper;
     private final Random rand = new Random();
-    private final EmailService emailService;
+    private final OrderQueueSender orderQueueSender;
+
 
     public List<UserListDTO> index() {
         List<User> list = userRepository.findAll();
@@ -51,7 +53,7 @@ public class UserService {
         user.setToken(Long.toHexString(rand.nextLong()));
         user = userRepository.save(user);
 
-        emailService.sendEmail(getEmail(user));
+        orderQueueSender.send(getEmail(user));
 
         return userMapper.toDTO(user);
     }
