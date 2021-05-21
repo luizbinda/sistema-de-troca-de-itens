@@ -13,4 +13,6 @@ public interface OfferRepository extends JpaRepository<Offer, Long> {
   List<Offer> findAllByIdNotAndSituationIdAndItemId(Long id, Long situationId, Long ItenId);
 
   List<Offer> findAllBySituationIdAndItemId(Long situationId, Long ItenId);
+
+  List<Offer> findAllBySituationIdAndUserId(Long situationId, Long ItenId);
 }

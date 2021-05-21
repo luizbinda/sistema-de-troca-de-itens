@@ -45,6 +45,12 @@ public class ItemService {
     return itemMapper.toDTO(item);
   }
 
+  public List<ItemDTO> saveAll(List<ItemDTO> itemsDto) {
+    List<Item> item = itemMapper.listToEntitys(itemsDto);
+    item = itemRepository.saveAll(item);
+    return itemMapper.listToDTO(item);
+  }
+
   public void delete(Long id) {
     try {
       itemRepository.deleteById(id);

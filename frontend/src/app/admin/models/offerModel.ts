@@ -3,6 +3,8 @@ export class OfferModel {
         public id?: number,
         public itemId?: number,
         public userId?: number,
-        public itemsOffered?: number[],
-    ) {}
+        public itemsOffered?: number[]
+    ) {
+        this.itemsOffered = []
+    }
 }

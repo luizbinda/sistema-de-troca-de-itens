@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {OfferModel} from "../admin/models/offerModel";
+import {OfferListModel} from "../admin/models/offerListModel";
 
 @Injectable({
   providedIn: 'root'
@@ -10,20 +11,25 @@ export class OfferService {
     private api = 'api/offers';
 
   constructor(private http: HttpClient) { }
-    index() {
-        return this.http.get<OfferModel[]>(this.api);
+
+    index(itemId) {
+        return this.http.get<OfferListModel[]>(`${this.api}/item/${itemId}`);
     }
 
-    store(offer) {
+    getAllForUser(userId) {
+        return this.http.get<OfferListModel[]>(`${this.api}/user/${userId}`);
+    }
+
+    store(offer: OfferModel) {
         return this.http.post(this.api, offer);
     }
 
-    update(offer) {
+    update(offer: OfferModel) {
         return this.http.put(this.api, offer);
     }
 
     show(id: number) {
-        return this.http.get<OfferModel>(`${this.api}/${id}`);
+        return this.http.get<OfferListModel>(`${this.api}/${id}`);
     }
 
 }

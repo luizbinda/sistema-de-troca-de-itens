@@ -16,14 +16,11 @@
                 *ngIf="item.images.length"
             >
                 <ng-template let-image pTemplate="item">
-                    <div>
                         <div class="p-grid p-nogutter">
                             <div class="p-col-12">
                                 <img [src]="urlImage(image.photo)" [alt]="image.description" />
-                                <button (click)="deleteImage(image.id)" pButton type="button" class="ui-button-danger" icon="ui-icon-delete"></button>
                             </div>
                         </div>
-                    </div>
                 </ng-template>
             </p-carousel>
             <p-carousel
@@ -54,29 +51,5 @@
                 <strong>Usuario:</strong> {{item.user.name}}
             </div>
         </div>
-        <p-footer>
-            <div class="buton-padding">
-                <button (click)="emitEditItem()" pButton type="button" class="ui-button-secondary buton-margin" icon="ui-icon-pencil"></button>
-                <button (click)="emitEditItem()" pButton type="button" class="ui-button-secondary buton-margin" icon="ui-icon-add-to-queue"></button>
-                <button (click)="showModalDialog(true)" pButton type="button" class="ui-button-secondary" icon="ui-icon-image"></button>
-            </div>
-        </p-footer>
     </p-card>
 </div>
-
-<p-dialog
-    header="Cadastrar Imagem"
-    [(visible)]="displayModalImage"
-    [modal]="true"
-    [style]="{width: '80vw', height: '80vh'}"
-    [baseZIndex]="10000"
-    [draggable]="false"
-    [resizable]="false"
->
-    <app-form-image
-        (displayModalImage)="showModalDialog($event)"
-        (updateImages)="emitGetItems()"
-        [imageEdit]="imageEdit"
-        [item]="item"
-    ></app-form-image>
-</p-dialog>
