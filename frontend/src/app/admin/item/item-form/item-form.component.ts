@@ -6,7 +6,6 @@ import {Constants} from "../../../shared/Constants";
 import {UserModel} from "../../models/userModel";
 import {ItemModel} from "../../models/itemModel";
 import {PageNotificationService} from "@nuvem/primeng-components";
-import {CategoryModel} from "../../models/categoryModel";
 import {SelectModel} from "../../models/selectModel";
 
 @Component({
@@ -80,7 +79,7 @@ export class ItemFormComponent implements OnInit, OnChanges {
         this.submited = false;
     }
 
-    saveUser() {
+    saveForm() {
         this.submited = true;
         if(this.form.value.id){
             this.itemService.update(this.form.value).pipe(finalize(() => this.submitedFinished()))
@@ -102,10 +101,6 @@ export class ItemFormComponent implements OnInit, OnChanges {
                 }
             )
         }
-    }
-
-    deleteUser(id){
-        console.log(id);
     }
 
 }
