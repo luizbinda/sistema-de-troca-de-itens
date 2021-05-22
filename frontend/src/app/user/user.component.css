@@ -46,6 +46,8 @@ h1 {
 .user input {
     width: 100%;
     margin-bottom: 21px;
+    color: white;
+    border-bottom: 1px solid white;
 }
 
 .user input[type="text"], input[type="password"]{
@@ -70,11 +72,11 @@ h1 {
 
 .user input[type="submit"]:hover{
     cursor: pointer;
-    background: #BFCDD9;
+    background: #ffffff;
     transform: 0.2s;
 }
 
-.login a {
+.user a {
     font-weight: bold;
     text-decoration: none;
     font-size: 12px;
@@ -85,5 +87,5 @@ h1 {
 
 .user a:hover{
     transition: 0.2s;
-    color: #BFCDD9;
+    color: #ffffff;
 }
