@@ -51,7 +51,6 @@ export class OfferFormComponent implements OnInit {
         this.itemService.show(id).subscribe(
             item => this.itemOffer = item,
             error => {
-                console.log(error);
                 this.notification.addErrorMessage(error.error.message);
             }
         )

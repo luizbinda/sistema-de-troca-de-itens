@@ -13,6 +13,6 @@ import java.util.List;
 public class EmailDTO implements Serializable {
   private String assunto;
   private String destinatario;
-  private String corpo;
+  private String userName;
   private List<String> copias = new ArrayList<>();
 }
