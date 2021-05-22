@@ -29506,7 +29506,8 @@ body .ui-state-active .pi, body .ui-state-highlight .pi {
 }
 body .ui-widget:disabled,
 body .ui-state-disabled {
-  opacity: 0.35;
+  opacity: 0.70;
+  color: #ffffff;
   filter: Alpha(Opacity=35);
   background-image: none;
   cursor: auto !important;
@@ -30667,13 +30668,14 @@ body .ui-slider:not(.ui-state-disabled) .ui-slider-handle:hover {
 }
 body .ui-calendar .ui-datepicker {
   min-width: auto;
+  color: #ffffff;
 }
 body .ui-calendar .ui-datepicker-trigger {
   position: absolute;
   bottom: 2px;
   right: 0;
   background-color: transparent;
-  color: #212121;
+  color: #ffffff;
   height: 1.5em;
   width: 1.5em;
   box-shadow: none;
@@ -30684,13 +30686,15 @@ body .ui-calendar .ui-datepicker-trigger {
   border-radius: 0;
 }
 body .ui-calendar .ui-datepicker-trigger .pi {
-  color: #757575;
+  color: #ffffff;
 }
 body .ui-calendar .ui-datepicker-trigger:enabled:hover {
   background-color: transparent;
+  color: #ffffff;
 }
 body .ui-fluid .ui-calendar.ui-calendar-w-btn .ui-inputtext {
   width: 100%;
+  color: #ffffff;
 }
 body .ui-datepicker {
   padding: 0;

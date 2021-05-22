@@ -89,3 +89,7 @@ h1 {
     transition: 0.2s;
     color: #ffffff;
 }
+
+body .ui-widget:disabled, body .ui-state-disabled{
+    opacity: 0.70;
+}
