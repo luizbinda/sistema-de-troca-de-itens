@@ -4,7 +4,7 @@ import com.colatina.sti.service.domain.User;
 import com.colatina.sti.service.repository.UserRepository;
 import com.colatina.sti.service.service.Utils.ConstantsUtils;
 import com.colatina.sti.service.service.Utils.OrderQueueSender;
-import com.colatina.sti.service.service.dto.email.EmailDTO;
+import com.colatina.sti.service.service.dto.email.WelcomeEmailDTO;
 import com.colatina.sti.service.service.dto.user.UserDTO;
 import com.colatina.sti.service.service.dto.user.UserListDTO;
 import com.colatina.sti.service.service.exception.RegraNegocioException;
@@ -67,9 +67,9 @@ public class UserService {
         return !(null == user);
     }
 
-    private EmailDTO getEmail(User user){
+    private WelcomeEmailDTO getEmail(User user){
 
-        EmailDTO email = new EmailDTO();
+        WelcomeEmailDTO email = new WelcomeEmailDTO();
         email.setAssunto("Cadastro STI");
         email.setUserName(user.getName());
         email.setTemplate(ConstantsUtils.EMAIL_WELCOME);

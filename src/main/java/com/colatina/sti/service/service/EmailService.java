@@ -1,8 +1,8 @@
 package com.colatina.sti.service.service;
 
-import com.colatina.sti.service.service.Utils.ConstantsUtils;
 import com.colatina.sti.service.service.configuration.ApplicationProperties;
-import com.colatina.sti.service.service.dto.email.EmailDTO;
+import com.colatina.sti.service.service.dto.email.OfferAcepetedEmailDTO;
+import com.colatina.sti.service.service.dto.email.WelcomeEmailDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -24,22 +24,45 @@ public class EmailService {
     private final ApplicationProperties applicationProperties;
     public final VelocityEngine velocityEngine;
 
-    public void sendEmail(EmailDTO emailDTO){
+    public void sendEmail(WelcomeEmailDTO welcomeEmailDTO){
         try {
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-            message.setTo(emailDTO.getDestinatario());
+            message.setTo(welcomeEmailDTO.getDestinatario());
             message.setFrom(applicationProperties.getEnderecoRemetente(),
                     applicationProperties.getNomeRemetente());
-            message.setSubject(emailDTO.getAssunto());
+            message.setSubject(welcomeEmailDTO.getAssunto());
 
-            for(String s : emailDTO.getCopias()){
+            for(String s : welcomeEmailDTO.getCopias()){
                 message.addCc(s);
             }
 
             Map model = new HashMap();
-            model.put("user", emailDTO.getUserName());
-            String template = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, emailDTO.getTemplate(), model);
+            model.put("user", welcomeEmailDTO.getUserName());
+            String template = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, welcomeEmailDTO.getTemplate(), model);
+            message.setText(template, true);
+            javaMailSender.send(mimeMessage);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendEmail(OfferAcepetedEmailDTO welcomeEmailDTO){
+        try {
+            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+            MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+            message.setTo(welcomeEmailDTO.getDestinatario());
+            message.setFrom(applicationProperties.getEnderecoRemetente(),
+                    applicationProperties.getNomeRemetente());
+            message.setSubject(welcomeEmailDTO.getAssunto());
+
+            for(String s : welcomeEmailDTO.getCopias()){
+                message.addCc(s);
+            }
+
+            Map model = new HashMap();
+            model.put("user", welcomeEmailDTO.getUserName());
+            String template = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, welcomeEmailDTO.getTemplate(), model);
             message.setText(template, true);
             javaMailSender.send(mimeMessage);
         }catch (Exception e) {
