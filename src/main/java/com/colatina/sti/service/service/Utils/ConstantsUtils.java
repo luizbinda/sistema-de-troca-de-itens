@@ -52,4 +52,6 @@ public class ConstantsUtils {
   //path emails template
   public static final String EMAIL_WELCOME = "/config/templates/WelcomeEmailTemplate.vm";
   public static final String EMAIL_OFFER_ACEPETED = "/config/templates/OffertAceptedEmailTemplate.vm";
+  public static final String EMAIL_OFFER_NOTIFICATION = "/config/templates/OffertNotificationEmailTemplate.vm";
+  public static final String EMAIL_OFFER_REFUSED = "/config/templates/OffertRefusedEmailTemplate.vm";
 }

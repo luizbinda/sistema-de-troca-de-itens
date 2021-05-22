@@ -11,10 +11,13 @@ import com.colatina.sti.service.service.dto.email.EmailDTO;
 import com.colatina.sti.service.service.dto.item.ItemDTO;
 import com.colatina.sti.service.service.dto.offer.OfferDTO;
 import com.colatina.sti.service.service.dto.offer.OfferListDTO;
+import com.colatina.sti.service.service.dto.user.UserDTO;
 import com.colatina.sti.service.service.exception.RegraNegocioException;
+import com.colatina.sti.service.service.mapper.ItemListMapper;
 import com.colatina.sti.service.service.mapper.ItemMapper;
 import com.colatina.sti.service.service.mapper.OfferListMapper;
 import com.colatina.sti.service.service.mapper.OfferMapper;
+import com.colatina.sti.service.service.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -33,6 +36,9 @@ public class OfferService {
     private final ItemService itemService;
     private final ItemMapper itemMapper;
     private final OrderQueueSender orderQueueSender;
+    private final UserService userService;
+    private final UserMapper userMapper;
+    private final ItemListMapper itemListMapper;
 
 
     public List<OfferListDTO> index(Long id) {
@@ -63,30 +69,27 @@ public class OfferService {
         offerRepository.saveAll(offersToDecline);
         offer.setSituation(new SituationOffer(ConstantsUtils.SITUATION_ACCEPTED));
         offer = offerRepository.save(offer);
-        sendEmails(offer.getUser(), user, offer.getItem().getName());
+        sendEmails(offer.getUser(), user, ConstantsUtils.EMAIL_OFFER_ACEPETED);
         return offerListMapper.toDTO(offer);
     }
 
-    private void sendEmails(User userRecivedOffer, User userSendOffe, String itemName) {
-        orderQueueSender.send(getEmail(userRecivedOffer));
-        orderQueueSender.send(getEmail(userSendOffe));
+    private void sendEmails(User userRecivedOffer, User userSendOffe, String template) {
+        orderQueueSender.send(getEmail(userRecivedOffer, template));
+        orderQueueSender.send(getEmail(userSendOffe, template));
     }
 
-    private EmailDTO getEmail(User user){
-
+    private EmailDTO getEmail(User user , String template){
         EmailDTO email = new EmailDTO();
         email.setAssunto("Oferta STI");
         email.setUserName(user.getName());
-        email.setTemplate(ConstantsUtils.EMAIL_OFFER_ACEPETED);
+        email.setTemplate(template);
         email.setDestinatario(user.getEmail());
         return email;
     }
 
     private void changeUserItems(List<Item> items, Long userId) {
         List<ItemDTO> itemsDTO = itemMapper.listToDTO(items);
-        itemsDTO.forEach( item -> {
-             item.setUserId(userId);
-         });
+        itemsDTO.forEach( item -> item.setUserId(userId));
         itemService.saveAll(itemsDTO);
     }
 
@@ -102,6 +105,9 @@ public class OfferService {
         SituationOffer refused = new SituationOffer(ConstantsUtils.SITUATION_REFUSED);
         offer.setSituation(refused);
         offer = offerRepository.save(offer);
+        User userRecivedOffer = userMapper.toEntity(userService.show(offer.getUser().getId()));
+        Item item = itemListMapper.toEntity(itemService.show(offer.getItemsOffered().get(0).getId()));
+        sendEmails(userRecivedOffer, item.getUser(), ConstantsUtils.EMAIL_OFFER_REFUSED);
         return offerListMapper.toDTO(offer);
     }
 
@@ -116,6 +122,9 @@ public class OfferService {
         }
 
         offer = offerRepository.save(offer);
+        User userRecivedOffer = userMapper.toEntity(userService.show(offer.getUser().getId()));
+        Item item = itemListMapper.toEntity(itemService.show(offer.getItemsOffered().get(0).getId()));
+        sendEmails(userRecivedOffer, item.getUser(), ConstantsUtils.EMAIL_OFFER_NOTIFICATION);
         return offerMapper.toDTO(offer);
     }
 
