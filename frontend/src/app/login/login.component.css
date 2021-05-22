@@ -6,11 +6,11 @@ body {
 
 .login {
     width: 320px;
-    height: 420px;
-    border: 2px solid #61A0E8;
+    height: 460px;
+    border: 2px solid #989ca0;
     border-radius: 80px 80px 80px 80px;
     color: rgb(0, 0, 0);
-    background-color: #61A0E8;
+    background-color: #a09b9b;
     top: 50%;
     left: 50%;
     position: absolute;

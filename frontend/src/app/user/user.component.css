@@ -6,11 +6,11 @@ body {
 
 .user {
     width: 320px;
-    height: 420px;
-    border: 2px solid #61A0E8;
+    height: 460px;
+    border: 2px solid #a9aaac;
     border-radius: 80px 80px 80px 80px;
     color: rgb(0, 0, 0);
-    background-color: #61A0E8;
+    background-color: #a09b9b;
     top: 50%;
     left: 50%;
     position: absolute;
@@ -21,9 +21,9 @@ body {
 
 .usuario {
     border-radius: 50%;
-    position: absolute;
-    top: 50px;
-    left: 112px;
+    position: fixed;
+    top: 0px;
+    left: 82px;
 }
 
 h1 {
@@ -88,4 +88,8 @@ h1 {
 .user a:hover{
     transition: 0.2s;
     color: #ffffff;
+}
+
+body .ui-widget:disabled, body .ui-state-disabled{
+    opacity: 0.70;
 }
