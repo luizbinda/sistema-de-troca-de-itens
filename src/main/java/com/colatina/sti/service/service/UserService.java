@@ -73,7 +73,7 @@ public class UserService {
         EmailDTO email = new EmailDTO();
 
         email.setAssunto("Cadastro STI");
-        email.setCorpo("Cadastro realizado com sucesso no STI");
+        email.setUserName(user.getName());
         email.setDestinatario(user.getEmail());
 
         return email;

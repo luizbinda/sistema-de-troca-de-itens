@@ -8,7 +8,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.apache.velocity.app.VelocityEngine;
-
 import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 import java.util.HashMap;
@@ -22,7 +21,7 @@ public class EmailService {
 
     private final JavaMailSender javaMailSender;
     private final ApplicationProperties applicationProperties;
-    private VelocityEngine velocityEngine;
+    private final VelocityEngine velocityEngine;
 
     public void sendEmail(EmailDTO emailDTO){
         try {
