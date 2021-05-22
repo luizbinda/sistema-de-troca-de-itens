@@ -7,7 +7,7 @@ import {UserModel} from "../admin/models/userModel";
 })
 export class UserService {
 
-    private api = 'api/users';
+  private api = 'api/users';
 
   constructor(private http: HttpClient) { }
     index() {

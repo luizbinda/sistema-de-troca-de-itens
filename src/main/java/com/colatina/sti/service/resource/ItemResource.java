@@ -21,7 +21,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/itens")
+    @RequestMapping("/api/itens")
 @RequiredArgsConstructor
 public class ItemResource {
   private final ItemService itemService;
