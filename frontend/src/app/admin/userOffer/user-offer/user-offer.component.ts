@@ -2,19 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import {ItemModel} from "../../models/itemModel";
 import {ItemService} from "../../../services/item.service";
 import {UserModel} from "../../models/userModel";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, NavigationExtras, Router} from "@angular/router";
 import {OfferService} from "../../../services/offer.service";
+import {OfferListModel} from "../../models/offerListModel";
 
 @Component({
   selector: 'app-offer-form',
-  templateUrl: './offer-form.component.html',
-  styleUrls: ['./offer-form.component.css']
+  templateUrl: './user-offer.component.html',
+  styleUrls: ['./user-offer.component.css']
 })
-export class OfferFormComponent implements OnInit {
+export class UserOfferComponent implements OnInit {
 
-    offers: ItemModel[] = [];
-    offersView: ItemModel[] = [];
-    user: UserModel = new UserModel(1) ;
+    offers:  OfferListModel[] = [];
+    offersView:  OfferListModel[] = [];
+    user: UserModel = new UserModel(2) ;
     totalRecords: number;
     perPage = 6;
 
@@ -41,7 +42,14 @@ export class OfferFormComponent implements OnInit {
         this.offersView = [...this.offers].splice(event.page * this.perPage, this.perPage);
     }
 
-    selectOfer(){
+    selectOfer(offer: OfferListModel){
+
+        const navigationExtras: NavigationExtras = {
+            queryParams: {
+                offerId: JSON.stringify(offer.id)
+            }
+        };
+        this.router.navigate(['/admin/offer-view'], navigationExtras);
 
     }
 
