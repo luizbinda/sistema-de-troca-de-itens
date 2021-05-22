@@ -4,7 +4,7 @@ import com.colatina.sti.service.domain.User;
 import com.colatina.sti.service.repository.UserRepository;
 import com.colatina.sti.service.service.Utils.ConstantsUtils;
 import com.colatina.sti.service.service.Utils.OrderQueueSender;
-import com.colatina.sti.service.service.dto.email.WelcomeEmailDTO;
+import com.colatina.sti.service.service.dto.email.EmailDTO;
 import com.colatina.sti.service.service.dto.user.UserDTO;
 import com.colatina.sti.service.service.dto.user.UserListDTO;
 import com.colatina.sti.service.service.dto.user.UserLoginDTO;
@@ -82,9 +82,9 @@ public class UserService implements UserDetailsService {
         return !(null == user);
     }
 
-    private WelcomeEmailDTO getEmail(User user){
+    private EmailDTO getEmail(User user){
 
-        WelcomeEmailDTO email = new WelcomeEmailDTO();
+        EmailDTO email = new EmailDTO();
         email.setAssunto("Cadastro STI");
         email.setUserName(user.getName());
         email.setTemplate(ConstantsUtils.EMAIL_WELCOME);

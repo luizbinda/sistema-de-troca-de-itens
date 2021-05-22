@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class WelcomeEmailDTO implements Serializable {
+public class EmailDTO implements Serializable {
   private String assunto;
   private String destinatario;
   private String userName;

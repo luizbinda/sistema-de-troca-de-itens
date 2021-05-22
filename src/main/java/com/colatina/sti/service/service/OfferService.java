@@ -7,8 +7,7 @@ import com.colatina.sti.service.domain.User;
 import com.colatina.sti.service.repository.OfferRepository;
 import com.colatina.sti.service.service.Utils.ConstantsUtils;
 import com.colatina.sti.service.service.Utils.OrderQueueSender;
-import com.colatina.sti.service.service.dto.email.OfferAcepetedEmailDTO;
-import com.colatina.sti.service.service.dto.email.WelcomeEmailDTO;
+import com.colatina.sti.service.service.dto.email.EmailDTO;
 import com.colatina.sti.service.service.dto.item.ItemDTO;
 import com.colatina.sti.service.service.dto.offer.OfferDTO;
 import com.colatina.sti.service.service.dto.offer.OfferListDTO;
@@ -69,16 +68,15 @@ public class OfferService {
     }
 
     private void sendEmails(User userRecivedOffer, User userSendOffe, String itemName) {
-        orderQueueSender.send(getEmail(userRecivedOffer, itemName));
-        orderQueueSender.send(getEmail(userSendOffe, itemName));
+        orderQueueSender.send(getEmail(userRecivedOffer));
+        orderQueueSender.send(getEmail(userSendOffe));
     }
 
-    private OfferAcepetedEmailDTO getEmail(User user, String itemName){
+    private EmailDTO getEmail(User user){
 
-        OfferAcepetedEmailDTO email = new OfferAcepetedEmailDTO();
+        EmailDTO email = new EmailDTO();
         email.setAssunto("Oferta STI");
         email.setUserName(user.getName());
-        email.setItemName(itemName);
         email.setTemplate(ConstantsUtils.EMAIL_OFFER_ACEPETED);
         email.setDestinatario(user.getEmail());
         return email;

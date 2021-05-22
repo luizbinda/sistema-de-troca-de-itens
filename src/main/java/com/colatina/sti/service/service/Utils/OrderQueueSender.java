@@ -1,7 +1,6 @@
 package com.colatina.sti.service.service.Utils;
 
-import com.colatina.sti.service.service.dto.email.OfferAcepetedEmailDTO;
-import com.colatina.sti.service.service.dto.email.WelcomeEmailDTO;
+import com.colatina.sti.service.service.dto.email.EmailDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -15,11 +14,7 @@ public class OrderQueueSender {
 
   private final Queue queue;
 
-  public void send(WelcomeEmailDTO email) {
-    rabbitTemplate.convertAndSend(this.queue.getName(), email);
-  }
-
-  public void send(OfferAcepetedEmailDTO email) {
+  public void send(EmailDTO email) {
     rabbitTemplate.convertAndSend(this.queue.getName(), email);
   }
 }
