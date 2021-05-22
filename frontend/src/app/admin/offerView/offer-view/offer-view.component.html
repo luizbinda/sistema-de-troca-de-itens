@@ -1,0 +1,20 @@
+<div class="title">
+    <h1>Item Selecionado</h1>
+</div>
+<div class="item-container" *ngIf="offer">
+    <app-item-card [item]="offer.item"> </app-item-card>
+</div>
+<div class="title">
+    <h1>Item Ofertados</h1>
+</div>
+<div class="item-container" *ngIf="offer">
+    <app-item-card
+        *ngFor="let item of offer.itemsOffered"
+        [item]="item"
+    ></app-item-card>
+</div>
+<div class="acept-button">
+    <button (click)="acceptOffer()" pButton type="button" label="Aceitar Oferta" class="ui-button-success"></button>
+    <button (click)="refuseOffer()" pButton type="button" label="Recusar Oferta" class="ui-button-danger"></button>
+</div>
+

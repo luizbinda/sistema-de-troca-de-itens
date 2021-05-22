@@ -1,0 +1,12 @@
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<div class="item-container">
+    <p-card
+        header="Item: {{item.name}}"
+        subheader="Categoria: {{item.category.description}}"
+        class="item-card" styleClass="ui-card-shadow"
+    >
+        <div>
+            <p><strong>Descrição: </strong> {{item.description}}</p>
+        </div>
+    </p-card>
+</div>

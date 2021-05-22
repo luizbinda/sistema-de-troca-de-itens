@@ -1,0 +1,11 @@
+<div class="item-container">
+    <app-item-card
+        *ngFor="let item of itemsView"
+        [item]="item"
+    ></app-item-card>
+</div>
+<p-paginator
+    [rows]="perPage"
+    [totalRecords]="totalRecords"
+    (onPageChange)="paginate($event)"
+></p-paginator>

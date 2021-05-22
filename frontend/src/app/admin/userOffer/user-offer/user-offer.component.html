@@ -1,0 +1,12 @@
+<div class="item-container">
+    <app-offer-card
+        (click)="selectOfer(offer)"
+        *ngFor="let offer of offersView"
+        [offer]="offer"
+    ></app-offer-card>
+</div>
+<p-paginator
+    [rows]="perPage"
+    [totalRecords]="totalRecords"
+    (onPageChange)="paginate($event)"
+></p-paginator>
