@@ -123,6 +123,8 @@
 				<artifactId>spring-boot-starter-velocity</artifactId>
 				<version>1.4.7.RELEASE</version>
 			</dependency>
+<!--			link para download manual das depencia caso intelij não conseguir baixar -->
+<!--			https://jar-download.com/artifacts/com.alibaba.spring/spring-context-velocity-->
 		</dependencies>
 	</dependencyManagement>
 

@@ -1,3 +1,4 @@
+# in the com.colatina.sti.service.service
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" style="width:100%;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0">
 <head>
@@ -177,7 +178,7 @@
                                                 <td valign="top" align="center" style="padding:0;width:600px;Margin:0">
                                                     <table style="border-radius:4px;background-color:#ffffff;border-spacing:0px;mso-table-rspace:0pt;mso-table-lspace:0pt;border-collapse:separate" width="100%" cellspacing="0" cellpadding="0" bgcolor="#ffffff" role="presentation">
                                                         <tr style="border-collapse:collapse">
-                                                            <td class="es-m-txt-l" bgcolor="#ffffff" align="left" style="padding-top:20px;padding-left:30px;padding-bottom:20px;Margin:0;padding-right:30px"><p style="color:#666666;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;font-size:18px;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;line-height:27px;mso-line-height-rule:exactly;Margin:0">${user.nome} seja muito bem vindo ao Sistema de Troca de Itens.<br></p></td>
+                                                            <td class="es-m-txt-l" bgcolor="#ffffff" align="left" style="padding-top:20px;padding-left:30px;padding-bottom:20px;Margin:0;padding-right:30px"><p style="color:#666666;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;font-size:18px;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;line-height:27px;mso-line-height-rule:exactly;Margin:0">${user} seja muito bem vindo ao Sistema de Troca de Itens.<br></p></td>
                                                         </tr>
                                                     </table></td>
                                             </tr>

@@ -44,4 +44,8 @@ public class ConstantsUtils {
   public static final String ITEM_DESCRICAO_NOT_EMPITY = "Campo descrição não pode estar vazio";
   public static final String ITEM_CATEGORIA_NOT_NULL = "Campo categoria não pode ser nulo";
   public static final String ITEM_USER_NOT_NULL = "Campo Usuário não pode ser nulo";
+
+  //path emails template
+  public static final String EMAIL_WELCOME = "/EmailTemplate.vm";
+  public static final String EMAIL_OFFER_ACEPETED = "/EmailTemplate.vm";
 }

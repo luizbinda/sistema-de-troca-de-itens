@@ -28,7 +28,6 @@ public class UserService {
     private final Random rand = new Random();
     private final OrderQueueSender orderQueueSender;
 
-
     public List<UserListDTO> index() {
         List<User> list = userRepository.findAll();
         return userListMapper.listToDTO(list);
@@ -71,11 +70,10 @@ public class UserService {
     private EmailDTO getEmail(User user){
 
         EmailDTO email = new EmailDTO();
-
         email.setAssunto("Cadastro STI");
         email.setUserName(user.getName());
+        email.setTemplate(ConstantsUtils.EMAIL_WELCOME);
         email.setDestinatario(user.getEmail());
-
         return email;
     }
 

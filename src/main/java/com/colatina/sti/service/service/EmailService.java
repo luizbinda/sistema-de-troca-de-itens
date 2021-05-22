@@ -1,5 +1,6 @@
 package com.colatina.sti.service.service;
 
+import com.colatina.sti.service.service.Utils.ConstantsUtils;
 import com.colatina.sti.service.service.configuration.ApplicationProperties;
 import com.colatina.sti.service.service.dto.email.EmailDTO;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class EmailService {
 
     private final JavaMailSender javaMailSender;
     private final ApplicationProperties applicationProperties;
-    private final VelocityEngine velocityEngine;
+    public final VelocityEngine velocityEngine;
 
     public void sendEmail(EmailDTO emailDTO){
         try {
@@ -38,9 +39,8 @@ public class EmailService {
 
             Map model = new HashMap();
             model.put("user", emailDTO.getUserName());
-            String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "com/dns/registration-confirmation.vm", model);
-
-            message.setText(text, true);
+            String template = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, emailDTO.getTemplate(), model);
+            message.setText(template, true);
             javaMailSender.send(mimeMessage);
         }catch (Exception e) {
             e.printStackTrace();

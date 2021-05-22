@@ -14,5 +14,6 @@ public class EmailDTO implements Serializable {
   private String assunto;
   private String destinatario;
   private String userName;
+  private String template;
   private List<String> copias = new ArrayList<>();
 }

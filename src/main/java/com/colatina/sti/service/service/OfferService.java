@@ -3,8 +3,11 @@ package com.colatina.sti.service.service;
 import com.colatina.sti.service.domain.Item;
 import com.colatina.sti.service.domain.Offer;
 import com.colatina.sti.service.domain.SituationOffer;
+import com.colatina.sti.service.domain.User;
 import com.colatina.sti.service.repository.OfferRepository;
 import com.colatina.sti.service.service.Utils.ConstantsUtils;
+import com.colatina.sti.service.service.Utils.OrderQueueSender;
+import com.colatina.sti.service.service.dto.email.EmailDTO;
 import com.colatina.sti.service.service.dto.item.ItemDTO;
 import com.colatina.sti.service.service.dto.offer.OfferDTO;
 import com.colatina.sti.service.service.dto.offer.OfferListDTO;
@@ -29,6 +32,7 @@ public class OfferService {
     private final OfferListMapper offerListMapper;
     private final ItemService itemService;
     private final ItemMapper itemMapper;
+    private final OrderQueueSender orderQueueSender;
 
 
     public List<OfferListDTO> index(Long id) {
@@ -53,13 +57,29 @@ public class OfferService {
         List<Offer> offersToDecline = new ArrayList<>(offerRepository.findBySituationIdAndItemIdIn(ConstantsUtils.SITUATION_PENDING, itensIds));
         offersToDecline.addAll(offerRepository.findAllByIdNotAndSituationIdAndItemId(offer.getId(), ConstantsUtils.SITUATION_PENDING, offer.getItem().getId()));
         offersToDecline.forEach(offerToDecline ->  offerToDecline.setSituation(new SituationOffer(ConstantsUtils.SITUATION_REFUSED)));
-        Long userId = offer.getItemsOffered().get(0).getUser().getId();
+        User user = offer.getItemsOffered().get(0).getUser();
         changeUserItems(offer.getItemsOffered(), offer.getUser().getId());
-        changeUserItem(offer.getItem(), userId);
+        changeUserItem(offer.getItem(), user.getId());
         offerRepository.saveAll(offersToDecline);
         offer.setSituation(new SituationOffer(ConstantsUtils.SITUATION_ACCEPTED));
         offer = offerRepository.save(offer);
+        sendEmails(offer.getUser(), user);
         return offerListMapper.toDTO(offer);
+    }
+
+    private void sendEmails(User userRecivedOffer, User userSendOffe) {
+        orderQueueSender.send(getEmail(userRecivedOffer));
+        orderQueueSender.send(getEmail(userSendOffe));
+    }
+
+    private EmailDTO getEmail(User user){
+
+        EmailDTO email = new EmailDTO();
+        email.setAssunto("Cadastro STI");
+        email.setUserName(user.getName());
+        email.setTemplate(ConstantsUtils.EMAIL_OFFER_ACEPETED);
+        email.setDestinatario(user.getEmail());
+        return email;
     }
 
     private void changeUserItems(List<Item> items, Long userId) {
