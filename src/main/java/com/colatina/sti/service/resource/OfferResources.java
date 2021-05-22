@@ -34,6 +34,11 @@ public class OfferResources {
         return  new ResponseEntity<>(offerService.index(id), HttpStatus.OK);
     }
 
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<OfferListDTO>> findAllPendingByUser(@PathVariable Long id) {
+        return  new ResponseEntity<>(offerService.findAllPendingByUser(id), HttpStatus.OK);
+    }
+
     @PatchMapping("/accepted/{id}")
     public ResponseEntity<OfferListDTO> changeSituationAccepted(@PathVariable Long id) {
         return  new ResponseEntity<>(offerService.changeSituationAccepted(id), HttpStatus.OK);

@@ -10,7 +10,7 @@ import {FormImageComponent} from "./form-image/form-image.component";
 
 
 @NgModule({
-  declarations: [ItemIndexComponent, ItemCardComponent, ItemFormComponent, FormImageComponent],
+    declarations: [ItemIndexComponent, ItemCardComponent, ItemFormComponent, FormImageComponent],
     imports: [
         CommonModule,
         ItemRoutingModule,

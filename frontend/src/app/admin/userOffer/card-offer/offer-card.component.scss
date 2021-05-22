@@ -1,0 +1,36 @@
+.item-container {
+    display: flex;
+    padding: 2px 1px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+}
+
+.item-card {
+    width: 250px;
+    padding: 10px;
+    transition: all .2s ease-in-out;
+    img {
+        padding: 5px;
+    }
+}
+
+.item-card:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+:host ::ng-deep .items-carousel {
+    .ui-carousel-dots-container {
+        display: none !important;
+    }
+}
+
+.buton-padding {
+    padding: 5px;
+}
+
+.buton-margin {
+    margin-right: 5px;
+}

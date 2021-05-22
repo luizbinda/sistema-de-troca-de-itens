@@ -5,9 +5,11 @@ import com.colatina.sti.service.domain.Offer;
 import com.colatina.sti.service.domain.SituationOffer;
 import com.colatina.sti.service.repository.OfferRepository;
 import com.colatina.sti.service.service.Utils.ConstantsUtils;
+import com.colatina.sti.service.service.dto.item.ItemDTO;
 import com.colatina.sti.service.service.dto.offer.OfferDTO;
 import com.colatina.sti.service.service.dto.offer.OfferListDTO;
 import com.colatina.sti.service.service.exception.RegraNegocioException;
+import com.colatina.sti.service.service.mapper.ItemMapper;
 import com.colatina.sti.service.service.mapper.OfferListMapper;
 import com.colatina.sti.service.service.mapper.OfferMapper;
 import lombok.RequiredArgsConstructor;
@@ -26,11 +28,16 @@ public class OfferService {
     private final OfferMapper offerMapper;
     private final OfferListMapper offerListMapper;
     private final ItemService itemService;
-
+    private final ItemMapper itemMapper;
 
 
     public List<OfferListDTO> index(Long id) {
         List<Offer> list = offerRepository.findAllBySituationIdAndItemId(ConstantsUtils.SITUATION_PENDING, id);
+        return offerListMapper.listToDTO(list);
+    }
+
+    public List<OfferListDTO> findAllPendingByUser(Long id) {
+        List<Offer> list = offerRepository.findAllBySituationIdAndUserId(ConstantsUtils.SITUATION_PENDING, id);
         return offerListMapper.listToDTO(list);
     }
 
@@ -46,10 +53,27 @@ public class OfferService {
         List<Offer> offersToDecline = new ArrayList<>(offerRepository.findBySituationIdAndItemIdIn(ConstantsUtils.SITUATION_PENDING, itensIds));
         offersToDecline.addAll(offerRepository.findAllByIdNotAndSituationIdAndItemId(offer.getId(), ConstantsUtils.SITUATION_PENDING, offer.getItem().getId()));
         offersToDecline.forEach(offerToDecline ->  offerToDecline.setSituation(new SituationOffer(ConstantsUtils.SITUATION_REFUSED)));
+        Long userId = offer.getItemsOffered().get(0).getUser().getId();
+        changeUserItems(offer.getItemsOffered(), offer.getUser().getId());
+        changeUserItem(offer.getItem(), userId);
         offerRepository.saveAll(offersToDecline);
         offer.setSituation(new SituationOffer(ConstantsUtils.SITUATION_ACCEPTED));
         offer = offerRepository.save(offer);
         return offerListMapper.toDTO(offer);
+    }
+
+    private void changeUserItems(List<Item> items, Long userId) {
+        List<ItemDTO> itemsDTO = itemMapper.listToDTO(items);
+        itemsDTO.forEach( item -> {
+             item.setUserId(userId);
+         });
+        itemService.saveAll(itemsDTO);
+    }
+
+    private void changeUserItem(Item item, Long userId) {
+        ItemDTO itemDTO = itemMapper.toDTO(item);
+        itemDTO.setUserId(userId);
+        itemService.save(itemDTO);
     }
 
     public OfferListDTO changeSituationRefused(Long id) {

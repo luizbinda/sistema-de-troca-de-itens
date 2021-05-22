@@ -2,7 +2,7 @@ application:
     appName: sti
     email:
         endereco-remetente: jhordan.orto@gmail.com
-        nome-remetente: Jhordan
+        nome-remetente: Sistema de Troca de Itens
 spring:
     application:
         name: service
@@ -33,7 +33,7 @@ spring:
         host: smtp.gmail.com
         port: 587
         username: jhordan.orto@gmail.com
-        password: Barro2424
+        password: jortolani123@
         properties:
             mail:
                 smtp:
