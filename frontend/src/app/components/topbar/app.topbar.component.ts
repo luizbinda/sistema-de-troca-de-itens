@@ -42,6 +42,7 @@ export class AppTopbarComponent {
     }
 
     teste(){
-        console.log("teste")
+        console.log("teste");
+        this.router.navigate(['../user']);
     }
 }

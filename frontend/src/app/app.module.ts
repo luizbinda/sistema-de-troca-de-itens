@@ -14,12 +14,15 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { TokenInterceptor } from 'src/interceptors/token.interceptor';
+import { UserComponent } from './user/user.component';
+import {InputTextModule} from 'primeng/inputtext';
 
 @NgModule({
     declarations: [
         AppComponent,
         DiarioErrosComponent,
-        LoginComponent
+        LoginComponent,
+        UserComponent
     ],
     imports: [
         BlockUIModule.forRoot({
@@ -30,11 +33,12 @@ import { TokenInterceptor } from 'src/interceptors/token.interceptor';
         BrowserAnimationsModule,
         AppRoutingModule,
         HttpClientModule,
-        PageNotificationModule,
         ErrorStackModule,
         ErrorModule,
         SharedModule,
-        SecurityModule.forRoot(environment.auth)
+        SecurityModule.forRoot(environment.auth),
+        InputTextModule,
+        PageNotificationModule        
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
