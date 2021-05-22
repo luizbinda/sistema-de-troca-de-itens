@@ -22,7 +22,7 @@ public class EmailService {
     public void sendEmail(EmailDTO emailDTO){
         try {
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-            MimeMessageHelper message = new MimeMessageHelper(mimeMessage, false, "UTF-8");
+            MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
             message.setTo(emailDTO.getDestinatario());
             message.setFrom(applicationProperties.getEnderecoRemetente(),
                     applicationProperties.getNomeRemetente());
