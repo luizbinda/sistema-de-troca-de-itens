@@ -29570,20 +29570,24 @@ body .ui-inputtext {
   -moz-border-radius: 0px;
   -webkit-border-radius: 0px;
   border-radius: 0px;
+  color: #ffffff;
 }
 body .ui-inputtext:focus, body .ui-inputtext.ui-state-focus {
   border-width: 0;
   background-size: 100% 2px, 100% 1px;
   outline: none;
   padding-bottom: 2px;
+  color: #ffffff;
 }
 body .ui-inputtext:disabled {
   border-bottom: 1px dotted;
+  color: #ffffff;
 }
 body .ui-inputtext.ui-widget-content {
   border-width: 1px;
   background: transparent;
   background-image: none;
+  color: #ffffff;
 }
 body .ui-inputtext.ui-state-error {
   border-color: #e62a10;
@@ -29592,9 +29596,11 @@ body .ui-inputtext:-webkit-autofill {
   border-color: #bdbdbd;
   border-style: solid;
   border-width: 0px 0px 1px 0px;
+  color: #ffffff;
 }
 body .ui-inputtext:-webkit-autofill.ui-state-focus {
   padding-bottom: 0px;
+  
 }
 body .ui-widget-header:not(.ui-dataview-header) .ui-inputtext {
   background-image: linear-gradient(to bottom, #ffffff, #ffffff), linear-gradient(to bottom, #788791, #788791);
@@ -29796,6 +29802,7 @@ body .ui-button, body .ui-datepicker-buttonpane > button {
   overflow: hidden;
   background-color: #3e464c;
   color: #ffffff;
+  border-radius: 20px;
   font-size: 1em;
   height: 2.25em;
   padding: 0 1em;
