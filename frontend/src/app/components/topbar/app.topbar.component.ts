@@ -14,7 +14,7 @@ export class AppTopbarComponent {
     users: UserModel = new UserModel();
 
     constructor(
-        public app: AdminComponent, 
+        public app: AdminComponent,
         private readonly _authentication: Authentication<User>,
         private router: Router
     ) {
@@ -37,12 +37,7 @@ export class AppTopbarComponent {
     }
 
     logout(){
-        localStorage.clear(); 
+        localStorage.clear();
         this.router.navigate(['../login']);
-    }
-
-    teste(){
-        console.log("teste");
-        this.router.navigate(['../user']);
     }
 }
