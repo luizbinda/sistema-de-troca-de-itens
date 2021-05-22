@@ -5,6 +5,9 @@
         [offer]="offer"
     ></app-offer-card>
 </div>
+<div *ngIf="!offersView.length" class="item-container">
+    <h1>Nenhuma oferta pendente nesse momento</h1>
+</div>
 <p-paginator
     [rows]="perPage"
     [totalRecords]="totalRecords"

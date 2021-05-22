@@ -5,8 +5,8 @@ body {
 }
 
 .user {
-    width: 320px;
-    height: 460px;
+    width: 50vw;
+    height: 50vh;
     border: 2px solid #a9aaac;
     border-radius: 80px 80px 80px 80px;
     color: rgb(0, 0, 0);
@@ -55,7 +55,7 @@ h1 {
     border-bottom: 1px solid white;
     background: transparent;
     outline: none;
-    height: 40px;   
+    height: 40px;
     color: white;
     font-size: 16px;
 }
