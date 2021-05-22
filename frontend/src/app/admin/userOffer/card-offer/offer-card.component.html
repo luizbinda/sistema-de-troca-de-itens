@@ -1,8 +1,8 @@
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
 <div class="item-container">
     <p-card
-        header="{{offer.user.name}}"
-        subheader="Itens Ofertados: {{offer.itemsOffered.length + 1}}"
+        header="Usuário: {{offer.user.name}}"
+        subheader="Quantidade de tens Ofertados: {{offer.itemsOffered.length}}"
         class="item-card" styleClass="ui-card-shadow"
     >
         <app-item-card

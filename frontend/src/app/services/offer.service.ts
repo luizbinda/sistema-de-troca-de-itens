@@ -24,6 +24,14 @@ export class OfferService {
         return this.http.post(this.api, offer);
     }
 
+    accept(idOffer: number) {
+        return this.http.patch(`${this.api}/accepted/${idOffer}`, {});
+    }
+
+    refuse(idOffer: number) {
+        return this.http.patch(`${this.api}/refused/${idOffer}`, {});
+    }
+
     update(offer: OfferModel) {
         return this.http.put(this.api, offer);
     }

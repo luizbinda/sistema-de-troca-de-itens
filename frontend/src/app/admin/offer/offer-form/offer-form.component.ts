@@ -88,7 +88,10 @@ export class OfferFormComponent implements OnInit {
         if (!this.itemsOffered.length) {
             this.notification.addErrorMessage(Constants.OFFER_SELECT_ITEMS_ERROR);
         }
-        const offer = new OfferModel(null, this.itemId, this.user.id, this.itemsOffered);
+        const offer = new OfferModel();
+        offer.itemId = this.itemId;
+        offer.userId = this.itemOffer.user.id;
+        offer.itemsOffered = this.itemsOffered;
         this.offerService.store(offer).subscribe(
             () => {
                 this.notification.addSuccessMessage(Constants.SAVED_SUCCESSFULY);

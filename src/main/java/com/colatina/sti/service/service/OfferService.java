@@ -53,8 +53,9 @@ public class OfferService {
         List<Offer> offersToDecline = new ArrayList<>(offerRepository.findBySituationIdAndItemIdIn(ConstantsUtils.SITUATION_PENDING, itensIds));
         offersToDecline.addAll(offerRepository.findAllByIdNotAndSituationIdAndItemId(offer.getId(), ConstantsUtils.SITUATION_PENDING, offer.getItem().getId()));
         offersToDecline.forEach(offerToDecline ->  offerToDecline.setSituation(new SituationOffer(ConstantsUtils.SITUATION_REFUSED)));
+        Long userId = offer.getItemsOffered().get(0).getUser().getId();
         changeUserItems(offer.getItemsOffered(), offer.getUser().getId());
-        changeUserItem(offer.getItem(), offer.getItemsOffered().get(0).getUser().getId());
+        changeUserItem(offer.getItem(), userId);
         offerRepository.saveAll(offersToDecline);
         offer.setSituation(new SituationOffer(ConstantsUtils.SITUATION_ACCEPTED));
         offer = offerRepository.save(offer);
