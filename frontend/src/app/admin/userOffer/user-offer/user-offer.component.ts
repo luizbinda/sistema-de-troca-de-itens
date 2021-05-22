@@ -5,6 +5,7 @@ import {UserModel} from "../../models/userModel";
 import {ActivatedRoute, NavigationExtras, Router} from "@angular/router";
 import {OfferService} from "../../../services/offer.service";
 import {OfferListModel} from "../../models/offerListModel";
+import {getLoggedUser} from "../../../shared/getLogged";
 
 @Component({
   selector: 'app-offer-form',
@@ -15,7 +16,7 @@ export class UserOfferComponent implements OnInit {
 
     offers:  OfferListModel[] = [];
     offersView:  OfferListModel[] = [];
-    user: UserModel = new UserModel(2) ;
+    user: UserModel = getLoggedUser();
     totalRecords: number;
     perPage = 6;
 
@@ -43,14 +44,12 @@ export class UserOfferComponent implements OnInit {
     }
 
     selectOfer(offer: OfferListModel){
-
         const navigationExtras: NavigationExtras = {
             queryParams: {
                 offerId: JSON.stringify(offer.id)
             }
         };
         this.router.navigate(['/admin/offer-view'], navigationExtras);
-
     }
 
 }

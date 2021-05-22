@@ -15,12 +15,11 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   submit = false;
 
-
   constructor(
     private fb: FormBuilder,
     private loginService: LoginService,
     private router: Router,
-    private notification: PageNotificationService  
+    private notification: PageNotificationService
   ) { }
 
   iniciarForm(){
@@ -39,13 +38,12 @@ export class LoginComponent implements OnInit {
 
     this.loginService.login(this.form.value).subscribe( user => {
       localStorage.setItem('token', user.cpf);
-      localStorage.setItem('user', JSON.stringify(user));  
+      localStorage.setItem('user', JSON.stringify(user));
       this.router.navigate(['../admin']);
     }, erro => {
       this.notification.addErrorMessage(Constants.LOGIN_ERROR);
-      localStorage.clear(); 
+      localStorage.clear();
     } );
-    // this.router.navigate(['admin']);
   }
 
 }

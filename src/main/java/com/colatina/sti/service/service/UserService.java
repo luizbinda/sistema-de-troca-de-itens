@@ -29,7 +29,6 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final UserListMapper userListMapper;
     private final UserMapper userMapper;
-    private final EmailService emailService;
     private final OrderQueueSender orderQueueSender;
 
     public List<UserListDTO> index() {
@@ -45,11 +44,14 @@ public class UserService implements UserDetailsService {
 
     public UserDTO login(UserLoginDTO userLoginDTO) {
         User user = userRepository.findDistinctFirstByEmail(userLoginDTO.getEmail());
-        if (user != null && user.getToken() != null){
-            if(new BCryptPasswordEncoder(). matches(userLoginDTO.getPassword(), user.getToken()))
-                return userMapper.toDTO(user);
+        if (null == user){
+           throw new RegraNegocioException(ConstantsUtils.USER_NOT_FOUND);
         }
-        return userMapper.toDTO(new User());
+        if (!new BCryptPasswordEncoder(). matches(userLoginDTO.getPassword(), user.getToken())) {
+            throw new RegraNegocioException(ConstantsUtils.USER_NOT_LOGIN);
+        }
+
+        return userMapper.toDTO(user);
     }
 
     public UserDTO store(UserDTO userDTO) {
@@ -66,7 +68,6 @@ public class UserService implements UserDetailsService {
         user = userRepository.save(user);
 
         orderQueueSender.send(getEmail(user));
-        emailService.sendEmail(getEmail(user));
 
         return userMapper.toDTO(user);
     }

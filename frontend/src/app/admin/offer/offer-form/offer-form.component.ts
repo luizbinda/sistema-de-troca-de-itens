@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {ItemModel} from "../../models/itemModel";
 import {ItemService} from "../../../services/item.service";
 import {UserModel} from "../../models/userModel";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, NavigationExtras, Router} from "@angular/router";
 import {PageNotificationService} from "@nuvem/primeng-components";
 import {Constants} from "../../../shared/Constants";
 import {OfferService} from "../../../services/offer.service";
 import {OfferModel} from "../../models/offerModel";
+import {getLoggedUser} from "../../../shared/getLogged";
+import {OfferListModel} from "../../models/offerListModel";
 
 @Component({
   selector: 'app-offer-form',
@@ -20,7 +22,7 @@ export class OfferFormComponent implements OnInit {
     items: ItemModel[] = [];
     itemsView: ItemModel[] = [];
     itemsOffered: number[] = [];
-    user: UserModel = new UserModel(1) ;
+    user: UserModel = getLoggedUser();
     totalRecords: number;
     perPage = 6;
 
@@ -92,12 +94,22 @@ export class OfferFormComponent implements OnInit {
         offer.userId = this.itemOffer.user.id;
         offer.itemsOffered = this.itemsOffered;
         this.offerService.store(offer).subscribe(
-            () => {
+            offer => {
                 this.notification.addSuccessMessage(Constants.SAVED_SUCCESSFULY);
+                this.navigateOffer(offer);
             },() => {
                 this.notification.addErrorMessage(Constants.SAVED_ERROR);
             }
         );
+    }
+
+    navigateOffer(offer: OfferListModel){
+        const navigationExtras: NavigationExtras = {
+            queryParams: {
+                offerId: JSON.stringify(offer.id)
+            }
+        };
+        this.router.navigate(['/admin/dashboard'], navigationExtras);
     }
 
 

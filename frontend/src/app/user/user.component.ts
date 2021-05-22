@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
-import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { PageNotificationService } from '@nuvem/primeng-components';
 import { finalize } from 'rxjs/operators';
 import { UserModel } from '../admin/models/userModel';
@@ -18,10 +18,7 @@ export class UserComponent implements OnInit {
     form: FormGroup;
     isEditing: boolean = false;
     userLog: UserModel = new UserModel();
-
-    text: string;
-
-    disabled: boolean = true;   
+    disabled: boolean = true;
 
     constructor(
         private userService: UserService,
@@ -44,8 +41,8 @@ export class UserComponent implements OnInit {
 
         if (this.userLog != null && this.userLog.id != null) {
             return true;
-        }  
-        return false 
+        }
+        return false
     }
 
     initForm() {
@@ -63,7 +60,7 @@ export class UserComponent implements OnInit {
 
         if (this.userLog != null && this.userLog.id != null) {
             this.form.patchValue({...this.userLog, birthDate: new Date(this.userLog.birthDate)});
-        }   
+        }
     }
 
     setUser() {
@@ -93,7 +90,7 @@ export class UserComponent implements OnInit {
         } else {
             this.userService.store(this.form.value).pipe(
                 finalize(() => {
-                    this.router.navigate(['../admin']); 
+                    this.router.navigate(['../admin']);
                 })
             ).subscribe(
                 () => {

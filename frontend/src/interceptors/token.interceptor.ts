@@ -13,9 +13,9 @@ export class TokenInterceptor implements HttpInterceptor {
 
   constructor() {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): 
+  intercept(request: HttpRequest<unknown>, next: HttpHandler):
   Observable<HttpEvent<unknown>> {
-    
+
     let token = localStorage.getItem('token');
 
     if(token){
@@ -27,11 +27,10 @@ export class TokenInterceptor implements HttpInterceptor {
 
       return next.handle(req).pipe(
         tap(() => {
-          console.log('jbcwjbwj')
         })
       );
     }
-    
+
     return next.handle(request);
   }
 }

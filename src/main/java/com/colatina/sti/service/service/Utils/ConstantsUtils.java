@@ -24,6 +24,7 @@ public class ConstantsUtils {
   public static final String USER_CPF_DUPLICATE = "Cpf já cadastrado no sistema!";
   public static final String USER_EMAIL_DUPLICATE = "Email já cadastrado no sistema!";
   public static final String USER_NOT_FOUND = "Nenhum Usuário encontrado!";
+  public static final String USER_NOT_LOGIN= "Usuário não autenticado!";
 
   public static final String USER_PASSWORD_NOT_EMPTY = "Senha é obrigatoria!";
   public static final String USER_PASSWORD_NOT_NULL = "Senha não pode ser vazia!";

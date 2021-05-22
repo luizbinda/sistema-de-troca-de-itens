@@ -7,6 +7,7 @@ import {UserModel} from "../../models/userModel";
 import {ItemModel} from "../../models/itemModel";
 import {PageNotificationService} from "@nuvem/primeng-components";
 import {SelectModel} from "../../models/selectModel";
+import {getLoggedUser} from "../../../shared/getLogged";
 
 @Component({
   selector: 'app-item-form',
@@ -19,7 +20,7 @@ export class ItemFormComponent implements OnInit, OnChanges {
     isEditing: boolean = false;
     submited: boolean = false;
     categories: SelectModel[];
-    user : UserModel = new UserModel(1)
+    user : UserModel = getLoggedUser();
     @Output() displayModal = new EventEmitter<boolean>();
     @Output() updateItens = new EventEmitter<void>();
     @Input() itemEdit: ItemModel;
