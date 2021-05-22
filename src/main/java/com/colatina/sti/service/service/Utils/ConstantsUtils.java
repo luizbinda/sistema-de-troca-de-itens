@@ -46,6 +46,6 @@ public class ConstantsUtils {
   public static final String ITEM_USER_NOT_NULL = "Campo Usuário não pode ser nulo";
 
   //path emails template
-  public static final String EMAIL_WELCOME = "/EmailTemplate.vm";
-  public static final String EMAIL_OFFER_ACEPETED = "/EmailTemplate.vm";
+  public static final String EMAIL_WELCOME = "/config/templates/EmailTemplate.vm";
+  public static final String EMAIL_OFFER_ACEPETED = "/config/templates/EmailTemplate.vm";
 }
