@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PageNotificationService } from '@nuvem/primeng-components';
 import {ItemService} from "../../../services/item.service";
 import {ItemModel} from "../../models/itemModel";
 import {UserModel} from "../../models/userModel";
+import {getLoggedUser} from "../../../shared/getLogged";
 
 @Component({
   selector: 'app-item-index',
@@ -14,7 +14,7 @@ export class ItemIndexComponent implements OnInit {
     items: ItemModel[] = [];
     displayModal = false;
     itemEdit: ItemModel = new ItemModel();
-    user : UserModel = new UserModel(1)
+    user : UserModel = getLoggedUser();
     constructor(
       private itemService: ItemService,
     ) {}

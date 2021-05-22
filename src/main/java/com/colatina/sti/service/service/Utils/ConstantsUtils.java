@@ -24,6 +24,10 @@ public class ConstantsUtils {
   public static final String USER_CPF_DUPLICATE = "Cpf já cadastrado no sistema!";
   public static final String USER_EMAIL_DUPLICATE = "Email já cadastrado no sistema!";
   public static final String USER_NOT_FOUND = "Nenhum Usuário encontrado!";
+  public static final String USER_NOT_LOGIN= "Usuário não autenticado!";
+
+  public static final String USER_PASSWORD_NOT_EMPTY = "Senha é obrigatoria!";
+  public static final String USER_PASSWORD_NOT_NULL = "Senha não pode ser vazia!";
 
   // Offer validation Messages
 
@@ -44,4 +48,10 @@ public class ConstantsUtils {
   public static final String ITEM_DESCRICAO_NOT_EMPITY = "Campo descrição não pode estar vazio";
   public static final String ITEM_CATEGORIA_NOT_NULL = "Campo categoria não pode ser nulo";
   public static final String ITEM_USER_NOT_NULL = "Campo Usuário não pode ser nulo";
+
+  //path emails template
+  public static final String EMAIL_WELCOME = "/config/templates/WelcomeEmailTemplate.vm";
+  public static final String EMAIL_OFFER_ACEPETED = "/config/templates/OffertAceptedEmailTemplate.vm";
+  public static final String EMAIL_OFFER_NOTIFICATION = "/config/templates/OffertNotificationEmailTemplate.vm";
+  public static final String EMAIL_OFFER_REFUSED = "/config/templates/OffertRefusedEmailTemplate.vm";
 }

@@ -6,9 +6,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-
+import org.springframework.ui.velocity.VelocityEngineUtils;
+import org.apache.velocity.app.VelocityEngine;
 import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Service
@@ -18,6 +21,7 @@ public class EmailService {
 
     private final JavaMailSender javaMailSender;
     private final ApplicationProperties applicationProperties;
+    public final VelocityEngine velocityEngine;
 
     public void sendEmail(EmailDTO emailDTO){
         try {
@@ -32,7 +36,10 @@ public class EmailService {
                 message.addCc(s);
             }
 
-            message.setText(emailDTO.getCorpo(), true);
+            Map model = new HashMap();
+            model.put("user", emailDTO.getUserName());
+            String template = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, emailDTO.getTemplate(), model);
+            message.setText(template, true);
             javaMailSender.send(mimeMessage);
         }catch (Exception e) {
             e.printStackTrace();

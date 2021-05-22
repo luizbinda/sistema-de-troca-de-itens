@@ -7,27 +7,29 @@ import com.colatina.sti.service.service.Utils.OrderQueueSender;
 import com.colatina.sti.service.service.dto.email.EmailDTO;
 import com.colatina.sti.service.service.dto.user.UserDTO;
 import com.colatina.sti.service.service.dto.user.UserListDTO;
+import com.colatina.sti.service.service.dto.user.UserLoginDTO;
 import com.colatina.sti.service.service.exception.RegraNegocioException;
 import com.colatina.sti.service.service.mapper.UserListMapper;
 import com.colatina.sti.service.service.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
-import java.util.Random;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final UserListMapper userListMapper;
     private final UserMapper userMapper;
-    private final Random rand = new Random();
     private final OrderQueueSender orderQueueSender;
-
 
     public List<UserListDTO> index() {
         List<User> list = userRepository.findAll();
@@ -40,6 +42,18 @@ public class UserService {
         return userMapper.toDTO(User);
     }
 
+    public UserDTO login(UserLoginDTO userLoginDTO) {
+        User user = userRepository.findDistinctFirstByEmail(userLoginDTO.getEmail());
+        if (null == user){
+           throw new RegraNegocioException(ConstantsUtils.USER_NOT_FOUND);
+        }
+        if (!new BCryptPasswordEncoder(). matches(userLoginDTO.getPassword(), user.getToken())) {
+            throw new RegraNegocioException(ConstantsUtils.USER_NOT_LOGIN);
+        }
+
+        return userMapper.toDTO(user);
+    }
+
     public UserDTO store(UserDTO userDTO) {
         if (checkDuplicateCpf(userDTO.getCpf())) {
             throw new RegraNegocioException(ConstantsUtils.USER_CPF_DUPLICATE);
@@ -50,7 +64,7 @@ public class UserService {
         }
 
         User user = userMapper.toEntity(userDTO);
-        user.setToken(Long.toHexString(rand.nextLong()));
+        user.setToken(new BCryptPasswordEncoder().encode(userDTO.getEmail()));
         user = userRepository.save(user);
 
         orderQueueSender.send(getEmail(user));
@@ -71,11 +85,10 @@ public class UserService {
     private EmailDTO getEmail(User user){
 
         EmailDTO email = new EmailDTO();
-
         email.setAssunto("Cadastro STI");
-        email.setCorpo("Cadastro realizado com sucesso no STI");
+        email.setUserName(user.getName());
+        email.setTemplate(ConstantsUtils.EMAIL_WELCOME);
         email.setDestinatario(user.getEmail());
-
         return email;
     }
 
@@ -93,5 +106,17 @@ public class UserService {
         } catch (Exception e) {
             throw  new RegraNegocioException(ConstantsUtils.USER_NOT_FOUND);
         }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findDistinctFirstByEmail(email);
+
+        return new org.springframework.security.core.userdetails.
+                User(
+                        user.getEmail(),
+                        user.getToken(),
+                        AuthorityUtils.createAuthorityList("admin")
+        );
     }
 }

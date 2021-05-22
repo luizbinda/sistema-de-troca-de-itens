@@ -1,12 +1,15 @@
 package com.colatina.sti.service.service;
 
 import com.colatina.sti.service.domain.Item;
+import com.colatina.sti.service.domain.ItemSave;
 import com.colatina.sti.service.repository.ItemRepository;
+import com.colatina.sti.service.repository.ItemSaveRepository;
 import com.colatina.sti.service.service.dto.item.ItemDTO;
 import com.colatina.sti.service.service.dto.item.ItemListDTO;
 import com.colatina.sti.service.service.exception.RegraNegocioException;
 import com.colatina.sti.service.service.mapper.ItemListMapper;
 import com.colatina.sti.service.service.mapper.ItemMapper;
+import com.colatina.sti.service.service.mapper.ItemSaveMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +25,9 @@ public class ItemService {
   private final ItemRepository itemRepository;
   private final ItemMapper itemMapper;
   private final ItemListMapper itemListMapper;
+  private final ItemSaveMapper itemSaveMapper;
+  private final ItemSaveRepository itemSaveRepository;
+
 
   public List<ItemListDTO> index() {
     List<Item> list = itemRepository.findAll();
@@ -40,15 +46,15 @@ public class ItemService {
   }
 
   public ItemDTO save(ItemDTO itemDto) {
-    Item item = itemMapper.toEntity(itemDto);
-    item = itemRepository.save(item);
-    return itemMapper.toDTO(item);
+    ItemSave item = itemSaveMapper.toEntity(itemDto);
+    item = itemSaveRepository.save(item);
+    return itemSaveMapper.toDTO(item);
   }
 
   public List<ItemDTO> saveAll(List<ItemDTO> itemsDto) {
-    List<Item> item = itemMapper.listToEntitys(itemsDto);
-    item = itemRepository.saveAll(item);
-    return itemMapper.listToDTO(item);
+    List<ItemSave> item = itemSaveMapper.listToEntitys(itemsDto);
+    item = itemSaveRepository.saveAll(item);
+    return itemSaveMapper.listToDTO(item);
   }
 
   public void delete(Long id) {

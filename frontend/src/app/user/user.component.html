@@ -1,0 +1,46 @@
+<div class="user">
+    <img src="assets/layout/images/sem_fundo.png" class="usuario" width="150" height="150" alt="">
+    <br>
+    <br>
+    <form [formGroup]="form">
+    <div class="p-field">
+            <label for="name">Firstname</label>
+            <input
+                id="name"
+                placeholder="Firstname"
+                type="text"
+                pInputText
+                formControlName="name"
+            >
+        </div>
+        <div class="p-field">
+            <label for="email">Email</label>
+            <input
+                [disabled]="form.value.email"
+                placeholder="Email"
+                id="email"
+                type="text"
+                pInputText
+                formControlName="email"
+            >
+        </div>
+        <div class="p-field">
+            <span>CPF</span>
+            <p-inputMask
+                [disabled]="form.value.id"
+                mask="999.999.999-99"
+                pInputText
+                formControlName="cpf"
+                unmask="true"
+            ></p-inputMask>
+        </div>
+        <br>
+        <div class="p-field">
+            <span>Birth Date</span>
+            <p-calendar formControlName="birthDate"></p-calendar>
+        </div>
+        <p-footer>
+            <button  type="button" pButton icon="pi pi-check" (click)="saveUser()" label="Salvar"></button>
+        </p-footer>
+    </form>
+</div>
