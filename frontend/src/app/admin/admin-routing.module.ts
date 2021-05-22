@@ -10,9 +10,8 @@ const routes: Routes = [
       { path: 'dashboard', loadChildren: () => import('../admin/dashboard/dashboard.module').then(m => m.DashboardModule) },
       { path: 'offer', loadChildren: () => import('../admin/offer/offer.module').then(m => m.OfferModule) },
       { path: 'offers', loadChildren: () => import('../admin/userOffer/user-offer.module').then(m => m.UserOfferModule) },
-      { path: 'users', loadChildren: () => import('../admin/user/user.module').then(m => m.UserModule) },
       { path: 'items', loadChildren: () => import('../admin/item/item.module').then(m => m.ItemModule) },
-      { path: 'offer-view', loadChildren: () => import('../admin/offerView/offer-view.module').then(m => m.OfferViewModule) },
+      { path: 'offer-view', loadChildren: () => import('../admin/offerView/offer-view.module').then(m => m.OfferViewModule) }
     ]
   }
 ];

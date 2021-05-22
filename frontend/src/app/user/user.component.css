@@ -4,7 +4,7 @@ body {
     background-size: cover;
 }
 
-.login {
+.user {
     width: 320px;
     height: 420px;
     border: 2px solid #61A0E8;
@@ -21,9 +21,9 @@ body {
 
 .usuario {
     border-radius: 50%;
-    position: fixed;
-    top: 0px;
-    left: 82px;
+    position: absolute;
+    top: 50px;
+    left: 112px;
 }
 
 h1 {
@@ -37,18 +37,20 @@ h1 {
     font-size: 25px;
 }
 
-.login p {
+.user p {
     margin: 0;
     padding: 0;
     font-weight: bold;
 }
 
-.login input {
+.user input {
     width: 100%;
     margin-bottom: 21px;
+    color: white;
+    border-bottom: 1px solid white;
 }
 
-.login input[type="text"], input[type="password"]{
+.user input[type="text"], input[type="password"]{
     border: none;
     border-bottom: 1px solid white;
     background: transparent;
@@ -58,7 +60,7 @@ h1 {
     font-size: 16px;
 }
 
-.login input[type="submit"]{
+.user input[type="submit"]{
     border: none;
     outline: none;
     height: 35px;
@@ -68,13 +70,13 @@ h1 {
     transition: 0.2s;
 }
 
-.login input[type="submit"]:hover{
+.user input[type="submit"]:hover{
     cursor: pointer;
-    background: #BFCDD9;
+    background: #ffffff;
     transform: 0.2s;
 }
 
-.login a {
+.user a {
     font-weight: bold;
     text-decoration: none;
     font-size: 12px;
@@ -83,7 +85,7 @@ h1 {
     transition: 0.2s;
 }
 
-.login a:hover{
+.user a:hover{
     transition: 0.2s;
-    color: #BFCDD9;
+    color: #ffffff;
 }
