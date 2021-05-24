@@ -40,4 +40,8 @@ export class AppTopbarComponent {
         localStorage.clear();
         this.router.navigate(['../login']);
     }
+
+    updateUser(){
+        this.router.navigate(['../user']);
+    }
 }

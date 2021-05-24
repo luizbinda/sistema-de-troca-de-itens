@@ -41,7 +41,8 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('user', JSON.stringify(user));
       this.router.navigate(['../admin']);
     }, erro => {
-      this.notification.addErrorMessage(Constants.LOGIN_ERROR);
+        this.submit = false;
+      this.notification.addErrorMessage(erro.error.message);
       localStorage.clear();
     } );
   }

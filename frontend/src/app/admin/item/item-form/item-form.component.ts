@@ -43,6 +43,7 @@ export class ItemFormComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(): void {
+        console.log(this.itemEdit);
         if (this.itemEdit.id) {
             this.form.patchValue({
                 ...this.itemEdit,

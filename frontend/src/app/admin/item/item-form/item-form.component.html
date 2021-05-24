@@ -18,7 +18,7 @@
                 formControlName="description"
             >
         </div>
-        <div class="p-field form-padding">
+        <div class="p-field form-padding vai">
             <p-dropdown
                 [options]="categories"
                 placeholder="Selecione uma Categories"
@@ -38,14 +38,14 @@
             type="submit"
             pButton
             icon="pi pi-check"
-            label="Yes"
+            label="salvar"
             [disabled]="!form.valid || submited"
         ></button>
         <button
             type="button"
             pButton icon="pi pi-times"
             (click)="emitDisplayModal(false)"
-            label="No"
+            label="cancelar"
             class="ui-button-secondary"
         ></button>
     </p-footer>

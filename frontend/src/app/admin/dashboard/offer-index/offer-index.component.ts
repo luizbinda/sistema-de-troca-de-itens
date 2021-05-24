@@ -12,7 +12,7 @@ export class OfferIndexComponent implements OnInit {
     items: ItemModel[] = [];
     itemsView: ItemModel[] = [];
     totalRecords: number;
-    perPage = 6;
+    perPage = 5;
 
     constructor(
         private itemService: ItemService,

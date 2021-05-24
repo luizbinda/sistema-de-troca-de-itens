@@ -97,8 +97,8 @@ export class OfferFormComponent implements OnInit {
             offer => {
                 this.notification.addSuccessMessage(Constants.SAVED_SUCCESSFULY);
                 this.navigateOffer(offer);
-            },() => {
-                this.notification.addErrorMessage(Constants.SAVED_ERROR);
+            },erro => {
+                this.notification.addErrorMessage(erro.error.message);
             }
         );
     }
