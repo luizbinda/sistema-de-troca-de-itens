@@ -33,7 +33,7 @@ spring:
         host: smtp.gmail.com
         port: 587
         username: jhordan.orto@gmail.com
-        password: Barro2424
+        password: 
         properties:
             mail:
                 smtp:
